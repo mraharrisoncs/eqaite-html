@@ -48,18 +48,20 @@
                     <!-- The form will be built here by script.js -->
                 </form>
             </div>
-            <div style="max-width:600px;margin:40px auto;">
+            <div class="radar-container">
+                <div id="messageSection"></div>
+                <div id="radarCaption" class="radar-caption">Evaluation will appear here</div>
                 <canvas id="radarChart"></canvas>
             </div>
-            <button id="downloadReport" type="button" class="styled-btn">Download Report</button>
+            <div id="downloadSection" style="display:none; text-align:center; margin-top:2rem;"></div>
         </div>
     </div>
 
     <!-- linking javascript file  -->
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

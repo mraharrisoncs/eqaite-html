@@ -94,8 +94,11 @@ input[type="radio"] {
 
 button[type="submit"],
 .styled-btn {
-    width: 100%;
-    padding: 14px;
+    display: inline-block;
+    width: auto;
+    min-width: 180px;
+    padding: 14px 32px;
+    margin: 1.5rem auto 0 auto;
     background: var(--highlight);
     color: var(--dark);
     border: none;
@@ -103,7 +106,6 @@ button[type="submit"],
     font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    margin-top: 1.5rem;
     transition: background 0.2s, color 0.2s;
     font-family: 'Piazzolla', 'Times New Roman', serif;
 }
@@ -147,10 +149,6 @@ button[type="submit"]:hover,
     font-weight: 400;
 }
 
-#downloadReport {
-    display: none;
-}
-
 select {
     width: 100%;
     padding: 14px;
@@ -171,4 +169,34 @@ select:focus {
     background: var(--active);
     color: #222;
     outline: none;
+}
+
+.radar-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 28px 24px 20px 24px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.07);
+    border: 2px solid var(--dark);
+    text-align: center;
+    position: relative;
+}
+
+#messageSection {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--dark);
+    background: var(--alternative);
+    border-radius: 4px;
+    padding: 12px 16px;
+    display: none; /* Hide by default, show via JS */
+}
+
+.radar-caption {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 1rem;
+    text-align: center;
+    font-style: italic;
 }

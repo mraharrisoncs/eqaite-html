@@ -3,15 +3,15 @@
   "fields": [
     { "type": "text", "label": "Name (optional)", "id": "name", "name": "name", "required": false },
     { "type": "text", "label": "Email (optional)", "id": "email", "name": "email", "required": false },
-    { "type": "text", "label": "Tool to evaluate", "id": "tool", "name": "tool", "required": true },
+    { "type": "text", "label": "Tool to evaluate", "id": "tool", "name": "tool", "required": false },
     {
       "type": "select",
       "label": "Educational Setting",
       "name": "setting",
-      "required": true,
+      "required": false,
       "options": [
         { "label": "Primary", "value": "Primary" },
-        { "label": "Secondary", "value": "Secondary" },
+        { "label": "Secondary", "value": "Secondary", "selected": true },
         { "label": "Tertiary", "value": "Tertiary" }
       ]
     },

@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             input.id = field.id;
             input.name = field.name;
             if (field.required) input.required = true;
+            if (field.type === "text") input.value = "test"; // <-- Add this line
             form.appendChild(input);
             form.appendChild(document.createElement('br'));
         }
@@ -156,6 +157,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             formValues[key] = value;
         });
 
+        // Add datestamp in format YYYY/MM/DD HH:mm:ss
+        const now = new Date();
+        const pad = n => n.toString().padStart(2, '0');
+        const datestamp = `${now.getFullYear()}/${pad(now.getMonth() + 1)}/${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+        formValues["datestamp"] = datestamp;
+
         // Calculate averages for each section
         sectionAverages = {};
         for (const [section, names] of Object.entries(sectionMap)) {
@@ -174,17 +181,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         Object.entries(sectionAverages).forEach(([section, avg]) => {
             formValues[section] = avg;
         });
-
-        // Convert to CSV
-        const csvContent = convertToCSV(formValues);
-        const blob = new Blob([csvContent], { type: "text/csv" });
-        const link = document.createElement("a");
-        // Set timestamp for use in downloadReport
-        const now = new Date();
-        timestamp = now.toISOString().replace(/[:.]/g, '-');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = `eqaite_app_data_${timestamp}.csv`;
-        link.click();
 
         // Prepare data for radar chart
         const radarLabels = Object.keys(sectionAverages).map(label => label.replace(/^Average: /, ''));
@@ -222,53 +218,111 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Show the download report button
-        document.getElementById('downloadReport').style.display = 'block';
+        document.getElementById('radarCaption').style.display = 'none';
+
+        const messageSection = document.getElementById('messageSection');
+        const downloadSection = document.getElementById('downloadSection');
+
+        // Show "submitting" message and button immediately
+        messageSection.innerHTML = `Submitting your data...`;
+        messageSection.style.display = 'block';
+        downloadSection.innerHTML = `<button id="downloadReport" type="button" class="styled-btn">Download Report</button>`;
+        downloadSection.style.display = 'block';
+        attachDownloadHandler();
+
+        fetch('https://sheetdb.io/api/v1/6vyhqxr0yjnq6', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ data: [formValues] })
+        })
+        .then(response => response.json())
+        .then(data => {
+            messageSection.innerHTML = `Thank you for your submission. Your data has been received by the EQAITE project. Your results are shown, and you may download a PDF below the chart.`;
+            messageSection.style.display = 'block';
+        })
+        .catch(error => {
+            messageSection.innerHTML = `Thank you for your submission. Please advise the EQAITE project that "dataset send failed", but your results are shown and you may download a PDF below the chart.`;
+            messageSection.style.display = 'block';
+        });
 
         // Reset form after 2s
         setTimeout(() => form.reset(), 2000);
-
-        lastToolName = formValues["tool"] || "";
     });
 
-    document.getElementById('downloadReport').onclick = async function() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+    function attachDownloadHandler() {
+        const btn = document.getElementById('downloadReport');
+        if (!btn) return;
+        btn.onclick = async function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-        let y = 10;
-        doc.setFontSize(16);
-        doc.text("EQAITE Evaluation Report", 10, y);
-        y += 10;
-
-        // Add tool name if available
-        doc.setFontSize(13);
-        if (lastToolName) {
-            doc.text(`Tool: ${lastToolName}`, 10, y);
+            let y = 10;
+            doc.setFontSize(16);
+            doc.text("EQAITE Evaluation Report", 10, y);
             y += 10;
-        }
 
-        // Section averages (Dimensions)
-        doc.setFontSize(14);
-        doc.text("Dimensions", 10, y);
-        y += 8;
-        doc.setFontSize(12);
-        Object.entries(sectionAverages).forEach(([section, avg]) => {
-            doc.text(`${section}: ${avg}`, 10, y);
+            // Add tool name if available
+            doc.setFontSize(13);
+            if (lastToolName) {
+                doc.text(`Tool: ${lastToolName}`, 10, y);
+                y += 10;
+            }
+
+            // Section averages (Dimensions)
+            doc.setFontSize(14);
+            doc.text("Dimensions", 10, y);
             y += 8;
-        });
+            doc.setFontSize(12);
+            Object.entries(sectionAverages).forEach(([section, avg]) => {
+                doc.text(`${section}: ${avg}`, 10, y);
+                y += 8;
+            });
 
-        // Add radar chart as image
-        const chartCanvas = document.getElementById('radarChart');
-        const chartImg = chartCanvas.toDataURL('image/png', 1.0);
+            // Add radar chart as image
+            const chartCanvas = document.getElementById('radarChart');
+            const chartImg = chartCanvas.toDataURL('image/png', 1.0);
 
-        const pdfImgWidth = 180;
-        const aspectRatio = chartCanvas.height / chartCanvas.width;
-        const pdfImgHeight = pdfImgWidth * aspectRatio;
+            const pdfImgWidth = 180;
+            const aspectRatio = chartCanvas.height / chartCanvas.width;
+            const pdfImgHeight = pdfImgWidth * aspectRatio;
 
-        doc.addImage(chartImg, 'PNG', 10, y, pdfImgWidth, pdfImgHeight);
+            doc.addImage(chartImg, 'PNG', 10, y, pdfImgWidth, pdfImgHeight);
 
-        doc.save(`eqaite_app_report_${timestamp}.pdf`);
-    };
+            doc.save(`eqaite_app_report_${timestamp}.pdf`);
+        };
+    }
+
+    // Render a blank radar chart with placeholder labels
+    const radarLabels = ["Dimension 1", "Dimension 2", "Dimension 3", "Dimension 4", "Dimension 5"];
+    const radarData = [0, 0, 0, 0, 0]; // or use [5,5,5,5,5] for mid-value
+
+    const ctx = document.getElementById('radarChart').getContext('2d');
+    window.radarChartInstance = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: radarLabels,
+            datasets: [{
+                label: 'Dimensions',
+                data: radarData,
+                backgroundColor: 'rgba(255, 213, 0, 0.08)',
+                borderColor: '#ffd500',
+                pointBackgroundColor: '#ffd500',
+                pointBorderColor: '#000',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#ffd500'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    min: 0,
+                    max: 10,
+                    ticks: { stepSize: 2 }
+                }
+            }
+        }
+    });
 });
 
 // Helper: Convert object to CSV
