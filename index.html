@@ -1,0 +1,65 @@
+<!-- Index.html  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width,
+                   initial-scale=1.0">
+    <!-- Linking css file  -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;700&display=swap" rel="stylesheet">
+    <title>EQAITE App</title>
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="left-bar"></div>
+        <div class="content-area">
+            <!-- Heading section with logo and explanation -->
+            <div class="heading-section" style="text-align:center; margin-bottom: 2rem;">
+                <img src="https://eqaite.wordpress.com/wp-content/uploads/2025/06/eqaite_wordmarque_1280_white_bg-1.png?w=1024"
+                     alt="EQAITE Logo"
+                     style="max-width: 320px; width: 100%; height: auto; margin-bottom: 1rem;">
+                <h1>The EQAITE app</h1>
+                <p style="font-size: 1.15rem; color: #333; max-width: 600px; margin: 0 auto;">
+                    The EQAITE app is a web application that allows you to evaluate AI tools
+                    &nbsp;against the eqAIte framework and display the results on a radar map.
+                    &nbsp;It is designed to help you understand the capabilities of AI tools
+                    &nbsp;and make informed decisions about their use.
+                    <br>
+                    &nbsp;On hitting submit, you are permitting us to save your responses for
+                    &nbsp;research purposes and to populate our crowdsourced reports. We will never
+                    &nbsp;share your personal information with third parties.
+                    &nbsp;You can read more about our privacy policy and terms of use here:
+                    <a href="https://eqaite.org/terms" target="_blank" rel="noopener noreferrer">
+                        EQAITE Privacy Policy
+                    </a><br>
+                    If you have any questions or concerns, please contact us: info (at) eqaite.org
+                </p>
+            </div>
+
+            <!-- Creating the form container  -->
+            <div class="container">
+                <h1 id="formTitle"></h1>
+                <h4 id="errorText"></h4>
+                <form id="surveyForm">
+                    <!-- The form will be built here by script.js -->
+                </form>
+            </div>
+            <div style="max-width:600px;margin:40px auto;">
+                <canvas id="radarChart"></canvas>
+            </div>
+            <button id="downloadReport" type="button" class="styled-btn">Download Report</button>
+        </div>
+    </div>
+
+    <!-- linking javascript file  -->
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+
+</html>

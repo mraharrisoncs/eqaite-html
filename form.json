@@ -1,0 +1,117 @@
+{
+  "title": "EQAITE evaluation form",
+  "fields": [
+    { "type": "text", "label": "Name (optional)", "id": "name", "name": "name", "required": false },
+    { "type": "text", "label": "Email (optional)", "id": "email", "name": "email", "required": false },
+    { "type": "text", "label": "Tool to evaluate", "id": "tool", "name": "tool", "required": true },
+    {
+      "type": "select",
+      "label": "Educational Setting",
+      "name": "setting",
+      "required": true,
+      "options": [
+        { "label": "Primary", "value": "Primary" },
+        { "label": "Secondary", "value": "Secondary" },
+        { "label": "Tertiary", "value": "Tertiary" }
+      ]
+    },
+
+    {
+      "section": "Safeguarding and Security",
+      "description": "0–2: Lacks alignment with safeguarding, data protection, or compliance requirements. 3–5: Addresses basic compliance but with gaps. 6–8: Meets most expectations. 9–10: Fully aligns with policies; comprehensive oversight.",
+      "questions": [
+        {
+          "type": "range",
+          "label": "Safeguarding and Security (0–10)",
+          "id": "safeguarding",
+          "name": "safeguarding",
+          "min": 0,
+          "max": 10,
+          "required": true
+        }
+      ]
+    },
+
+    {
+      "section": "Fairness and Ethics",
+      "description": "0–2: Disregards equity, bias, or ethics. 3–5: Acknowledges but lacks protections. 6–8: Applies ethical principles, mitigates bias. 9–10: Strong safeguards, transparent and inclusive.",
+      "questions": [
+        {
+          "type": "range",
+          "label": "Fairness and Ethics (0–10)",
+          "id": "fairness",
+          "name": "fairness",
+          "min": 0,
+          "max": 10,
+          "required": true
+        }
+      ]
+    },
+
+    {
+      "section": "Cost",
+      "description": "0–2: Unpredictable or unclear value. 3–5: Affordable but with constraints. 6–8: Reasonable, predictable, acceptable workload. 9–10: Cost-efficient, low overhead, budget-aligned.",
+      "questions": [
+        {
+          "type": "range",
+          "label": "Cost (0–10)",
+          "id": "cost",
+          "name": "cost",
+          "min": 0,
+          "max": 10,
+          "required": true
+        }
+      ]
+    },
+
+    {
+      "section": "Operability",
+      "description": "0–2: Poor fit or lacking support. 3–5: Basic integration, limited support. 6–8: Fits systems, adaptable, standard support. 9–10: Seamless, adaptable, strong support.",
+      "questions": [
+        {
+          "type": "range",
+          "label": "Operability (0–10)",
+          "id": "operability",
+          "name": "operability",
+          "min": 0,
+          "max": 10,
+          "required": true
+        }
+      ]
+    },
+
+    {
+      "section": "Sustainability",
+      "description": "0–2: No visible efforts. 3–5: Some claims, limited transparency. 6–8: Energy-conscious, partial transparency. 9–10: Highly efficient, transparent metrics.",
+      "questions": [
+        {
+          "type": "range",
+          "label": "Sustainability (0–10)",
+          "id": "sustainability",
+          "name": "sustainability",
+          "min": 0,
+          "max": 10,
+          "required": true
+        }
+      ]
+    },
+
+    {
+      "section": "Pedagogical Value",
+      "description": "0–2: Little or no impact. 3–5: Supports some functions, limited impact. 6–8: Enhances planning/teaching/assessment. 9–10: High-impact, evidence of benefit.",
+      "questions": [
+        {
+          "type": "range",
+          "label": "Pedagogical Value (0–10)",
+          "id": "pedagogical",
+          "name": "pedagogical",
+          "min": 0,
+          "max": 10,
+          "required": true
+        }
+      ]
+    },
+
+    { "type": "textarea", "label": "Anything to add", "id": "feedback", "name": "feedback", "required": false }
+  ]
+}
