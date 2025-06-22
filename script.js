@@ -157,6 +157,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             formValues[key] = value;
         });
 
+        // Set lastToolName immediately after collecting formValues
+        lastToolName = formValues["tool"] || "";
+
         // Add datestamp in format YYYY/MM/DD HH:mm:ss
         const now = new Date();
         const pad = n => n.toString().padStart(2, '0');
