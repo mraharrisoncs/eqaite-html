@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         // Prepare data for radar chart
-        const radarLabels = Object.keys(sectionAverages).map(label => label.replace(/^Average: /, ''));
+        const radarLabels = Object.keys(sectionAverages);
         const radarData = Object.values(sectionAverages).map(val => Number(val));
 
         // Draw radar chart
@@ -194,19 +194,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (window.radarChartInstance) {
             window.radarChartInstance.destroy();
         }
+        const rootStyles = getComputedStyle(document.documentElement);
+        const highlight = rootStyles.getPropertyValue('--highlight').trim();
+        const active = rootStyles.getPropertyValue('--active').trim();
+        const dark = rootStyles.getPropertyValue('--dark').trim();
+
         window.radarChartInstance = new Chart(ctx, {
             type: 'radar',
             data: {
                 labels: radarLabels,
                 datasets: [{
-                    label: 'Dimensions',
+                    label: 'EQAITE summary',
                     data: radarData,
-                    backgroundColor: 'rgba(255, 213, 0, 0.2)',
-                    borderColor: '#ffd500',
-                    pointBackgroundColor: '#ffd500',
-                    pointBorderColor: '#000',
+                    backgroundColor: highlight + '33', // semi-transparent
+                    borderColor: highlight,
+                    pointBackgroundColor: highlight,
+                    pointBorderColor: dark,
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#ffd500'
+                    pointHoverBorderColor: highlight
                 }]
             },
             options: {
@@ -295,24 +300,34 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
     }
 
-    // Render a blank radar chart with placeholder labels
-    const radarLabels = ["Dimension 1", "Dimension 2", "Dimension 3", "Dimension 4", "Dimension 5"];
-    const radarData = [0, 0, 0, 0, 0]; // or use [5,5,5,5,5] for mid-value
+    // Get section headings for radar chart labels
+    const radarLabels = formConfig.fields
+        .filter(field => field.section && field.questions)
+        .map(field => field.section);
 
+    // Set blank data (all zeros)
+    const radarData = radarLabels.map(() => 0);
+
+    // Get CSS variables for colors
+    const rootStyles = getComputedStyle(document.documentElement);
+    const highlight = rootStyles.getPropertyValue('--highlight').trim();
+    const dark = rootStyles.getPropertyValue('--dark').trim();
+
+    // Draw blank radar chart
     const ctx = document.getElementById('radarChart').getContext('2d');
     window.radarChartInstance = new Chart(ctx, {
         type: 'radar',
         data: {
             labels: radarLabels,
             datasets: [{
-                label: 'Dimensions',
+                label: 'EQAITE summary',
                 data: radarData,
-                backgroundColor: 'rgba(255, 213, 0, 0.08)',
-                borderColor: '#ffd500',
-                pointBackgroundColor: '#ffd500',
-                pointBorderColor: '#000',
+                backgroundColor: highlight + '33', // semi-transparent
+                borderColor: highlight,
+                pointBackgroundColor: highlight,
+                pointBorderColor: dark,
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#ffd500'
+                pointHoverBorderColor: highlight
             }]
         },
         options: {
