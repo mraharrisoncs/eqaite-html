@@ -177,28 +177,143 @@ document.addEventListener('DOMContentLoaded', async () => {
                     count++;
                 }
             });
-            sectionAverages[`Average: ${section}`] = count ? (sum / count).toFixed(2) : '';
+            sectionAverages[section] = count ? (sum / count).toFixed(2) : '';
+
+            // Add averages to formValues for CSV
+            Object.entries(sectionAverages).forEach(([section, avg]) => {
+                formValues[section] = avg;
+            });
+
+            // Prepare data for radar chart
+            const radarLabels = Object.keys(sectionAverages);
+            const radarData = Object.values(sectionAverages).map(val => Number(val));
+
+            // Draw radar chart
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            if (window.radarChartInstance) {
+                window.radarChartInstance.destroy();
+            }
+            const rootStyles = getComputedStyle(document.documentElement);
+            const highlight = rootStyles.getPropertyValue('--highlight').trim();
+            const active = rootStyles.getPropertyValue('--active').trim();
+            const dark = rootStyles.getPropertyValue('--dark').trim();
+
+            window.radarChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: radarLabels,
+                    datasets: [{
+                        label: 'EQAITE summary',
+                        data: radarData,
+                        backgroundColor: highlight + '33', // semi-transparent
+                        borderColor: highlight,
+                        pointBackgroundColor: highlight,
+                        pointBorderColor: dark,
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: highlight
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 10,
+                            ticks: { stepSize: 2 }
+                        }
+                    }
+                }
+            });
+
+            document.getElementById('radarCaption').style.display = 'none';
+
+            const messageSection = document.getElementById('messageSection');
+            const downloadSection = document.getElementById('downloadSection');
+
+            // Show "submitting" message and button immediately
+            messageSection.innerHTML = `Submitting your data...`;
+            messageSection.style.display = 'block';
+            downloadSection.innerHTML = `<button id="downloadReport" type="button" class="styled-btn">Download Report</button>`;
+            downloadSection.style.display = 'block';
+            attachDownloadHandler();
+
+            fetch('https://sheetdb.io/api/v1/6vyhqxr0yjnq6', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: [formValues] })
+            })
+            .then(response => response.json())
+            .then(data => {
+                messageSection.innerHTML = `Thank you for your submission. Your data has been received by the EQAITE project. Your results are shown, and you may download a PDF below the chart.`;
+                messageSection.style.display = 'block';
+            })
+            .catch(error => {
+                messageSection.innerHTML = `Thank you for your submission. Please advise the EQAITE project that "dataset send failed", but your results are shown and you may download a PDF below the chart.`;
+                messageSection.style.display = 'block';
+            });
+
+            // Reset form after 2s
+            setTimeout(() => form.reset(), 2000);
+        };
+
+        function attachDownloadHandler() {
+            const btn = document.getElementById('downloadReport');
+            if (!btn) return;
+            btn.onclick = async function() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+
+                let y = 10;
+                doc.setFontSize(16);
+                doc.text("EQAITE Evaluation Report", 10, y);
+                y += 10;
+
+                // Add tool name if available
+                doc.setFontSize(13);
+                if (lastToolName) {
+                    doc.text(`Tool: ${lastToolName}`, 10, y);
+                    y += 10;
+                }
+
+                // Section averages (Dimensions)
+                doc.setFontSize(14);
+                doc.text("Dimensions", 10, y);
+                y += 8;
+                doc.setFontSize(12);
+                Object.entries(sectionAverages).forEach(([section, avg]) => {
+                    doc.text(`${section}: ${avg}`, 10, y);
+                    y += 8;
+                });
+
+                // Add radar chart as image
+                const chartCanvas = document.getElementById('radarChart');
+                const chartImg = chartCanvas.toDataURL('image/png', 1.0);
+
+                const pdfImgWidth = 180;
+                const aspectRatio = chartCanvas.height / chartCanvas.width;
+                const pdfImgHeight = pdfImgWidth * aspectRatio;
+
+                doc.addImage(chartImg, 'PNG', 10, y, pdfImgWidth, pdfImgHeight);
+
+                doc.save(`eqaite_app_report_${timestamp}.pdf`);
+            };
         }
 
-        // Add averages to formValues for CSV
-        Object.entries(sectionAverages).forEach(([section, avg]) => {
-            formValues[section] = avg;
-        });
+        // Get section headings for radar chart labels
+        const radarLabels = formConfig.fields
+            .filter(field => field.section && field.questions)
+            .map(field => field.section);
 
-        // Prepare data for radar chart
-        const radarLabels = Object.keys(sectionAverages);
-        const radarData = Object.values(sectionAverages).map(val => Number(val));
+        // Set blank data (all zeros)
+        const radarData = radarLabels.map(() => 0);
 
-        // Draw radar chart
-        const ctx = document.getElementById('radarChart').getContext('2d');
-        if (window.radarChartInstance) {
-            window.radarChartInstance.destroy();
-        }
+        // Get CSS variables for colors
         const rootStyles = getComputedStyle(document.documentElement);
         const highlight = rootStyles.getPropertyValue('--highlight').trim();
-        const active = rootStyles.getPropertyValue('--active').trim();
         const dark = rootStyles.getPropertyValue('--dark').trim();
 
+        // Draw blank radar chart
+        const ctx = document.getElementById('radarChart').getContext('2d');
         window.radarChartInstance = new Chart(ctx, {
             type: 'radar',
             data: {
@@ -225,121 +340,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
         });
-
-        document.getElementById('radarCaption').style.display = 'none';
-
-        const messageSection = document.getElementById('messageSection');
-        const downloadSection = document.getElementById('downloadSection');
-
-        // Show "submitting" message and button immediately
-        messageSection.innerHTML = `Submitting your data...`;
-        messageSection.style.display = 'block';
-        downloadSection.innerHTML = `<button id="downloadReport" type="button" class="styled-btn">Download Report</button>`;
-        downloadSection.style.display = 'block';
-        attachDownloadHandler();
-
-        fetch('https://sheetdb.io/api/v1/6vyhqxr0yjnq6', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data: [formValues] })
-        })
-        .then(response => response.json())
-        .then(data => {
-            messageSection.innerHTML = `Thank you for your submission. Your data has been received by the EQAITE project. Your results are shown, and you may download a PDF below the chart.`;
-            messageSection.style.display = 'block';
-        })
-        .catch(error => {
-            messageSection.innerHTML = `Thank you for your submission. Please advise the EQAITE project that "dataset send failed", but your results are shown and you may download a PDF below the chart.`;
-            messageSection.style.display = 'block';
-        });
-
-        // Reset form after 2s
-        setTimeout(() => form.reset(), 2000);
-    });
-
-    function attachDownloadHandler() {
-        const btn = document.getElementById('downloadReport');
-        if (!btn) return;
-        btn.onclick = async function() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            let y = 10;
-            doc.setFontSize(16);
-            doc.text("EQAITE Evaluation Report", 10, y);
-            y += 10;
-
-            // Add tool name if available
-            doc.setFontSize(13);
-            if (lastToolName) {
-                doc.text(`Tool: ${lastToolName}`, 10, y);
-                y += 10;
-            }
-
-            // Section averages (Dimensions)
-            doc.setFontSize(14);
-            doc.text("Dimensions", 10, y);
-            y += 8;
-            doc.setFontSize(12);
-            Object.entries(sectionAverages).forEach(([section, avg]) => {
-                doc.text(`${section}: ${avg}`, 10, y);
-                y += 8;
-            });
-
-            // Add radar chart as image
-            const chartCanvas = document.getElementById('radarChart');
-            const chartImg = chartCanvas.toDataURL('image/png', 1.0);
-
-            const pdfImgWidth = 180;
-            const aspectRatio = chartCanvas.height / chartCanvas.width;
-            const pdfImgHeight = pdfImgWidth * aspectRatio;
-
-            doc.addImage(chartImg, 'PNG', 10, y, pdfImgWidth, pdfImgHeight);
-
-            doc.save(`eqaite_app_report_${timestamp}.pdf`);
-        };
-    }
-
-    // Get section headings for radar chart labels
-    const radarLabels = formConfig.fields
-        .filter(field => field.section && field.questions)
-        .map(field => field.section);
-
-    // Set blank data (all zeros)
-    const radarData = radarLabels.map(() => 0);
-
-    // Get CSS variables for colors
-    const rootStyles = getComputedStyle(document.documentElement);
-    const highlight = rootStyles.getPropertyValue('--highlight').trim();
-    const dark = rootStyles.getPropertyValue('--dark').trim();
-
-    // Draw blank radar chart
-    const ctx = document.getElementById('radarChart').getContext('2d');
-    window.radarChartInstance = new Chart(ctx, {
-        type: 'radar',
-        data: {
-            labels: radarLabels,
-            datasets: [{
-                label: 'EQAITE summary',
-                data: radarData,
-                backgroundColor: highlight + '33', // semi-transparent
-                borderColor: highlight,
-                pointBackgroundColor: highlight,
-                pointBorderColor: dark,
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: highlight
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                r: {
-                    min: 0,
-                    max: 10,
-                    ticks: { stepSize: 2 }
-                }
-            }
-        }
     });
 });
 
