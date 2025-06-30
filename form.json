@@ -44,7 +44,7 @@
 
     {
       "section": "Cost",
-      "description": "0–2: Unpredictable or unclear value. 3–5: Affordable but with constraints. 6–8: Reasonable, predictable, acceptable workload. 9–10: Cost-efficient, low overhead, budget-aligned.",
+      "description": "0–2: Unpredictable or unclear value. 3–5: Affordable but with constraints. 6–8: Reasonable, predictable, acceptable workload. 9–10: Cost-efficient, low overhead, budget-aligned. NB, high values are desirable, they represent good value.",
       "questions": [
         { "type": "range", "label": "TCO: Affordable total cost of ownership, predictable model (0–10)", "id": "tco", "name": "tco", "min": 0, "max": 10, "required": true },
         { "type": "range", "label": "Training: Minimizes training burden, easy adoption (0–10)", "id": "training", "name": "training", "min": 0, "max": 10, "required": true },
@@ -76,28 +76,28 @@
 
     {
       "section": "Pedagogical Value",
-      "description": "This section assesses specific use cases, ensuring AI tools effectively enhance teaching, learning, and productivity.",
+      "description": "This section assesses specific use cases, ensuring AI tools effectively enhance teaching, learning, and productivity. You do not need to answer all questions. Choose the questions that align with your use case(s) and leave others blank.",
       "questions": [
-        { "type": "range", "label": "Customizable reporting, tailored interventions, school-specific modifications (0–10)", "id": "customreporting", "name": "customreporting", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Preserves teacher autonomy in planning, assessment, and design (0–10)", "id": "teacherautonomy", "name": "teacherautonomy", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Maintains assessment reliability and validity (0–10)", "id": "assessmentreliability", "name": "assessmentreliability", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Provides independent evidence of impact (0–10)", "id": "evidenceimpact", "name": "evidenceimpact", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Contextualized for UK or relevant territory (0–10)", "id": "contextualised", "name": "contextualised", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Reduces workload for planning, lesson creation, and assessment (0–10)", "id": "reduceworkload", "name": "reduceworkload", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Improves efficiency in marking, feedback, and reporting (0–10)", "id": "efficiency", "name": "efficiency", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Simplifies school-wide data analysis (0–10)", "id": "dataanalysis", "name": "dataanalysis", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Speeds up parent-facing reporting and communication (0–10)", "id": "parentreporting", "name": "parentreporting", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Assists in non-curricular effectiveness (e.g., behaviour management) (0–10)", "id": "noncurricular", "name": "noncurricular", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Facilitates personalized learning and engagement (0–10)", "id": "personalised", "name": "personalised", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Delivers other productivity benefits (0–10)", "id": "otherproductivity", "name": "otherproductivity", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Enhances learning efficiency (0–10)", "id": "learningefficiency", "name": "learningefficiency", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Supports ambitious learning outcomes (0–10)", "id": "ambitiousoutcomes", "name": "ambitiousoutcomes", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Sparks curiosity and engagement (0–10)", "id": "curiosity", "name": "curiosity", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Adaptive Learning: Adjusts pace/content to learner needs (0–10)", "id": "adaptivelearning", "name": "adaptivelearning", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Formative Feedback: Delivers immediate, targeted feedback (0–10)", "id": "formativefeedback", "name": "formativefeedback", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "AI Feedback Literacy: Builds student understanding of AI feedback (0–10)", "id": "aifeedbackliteracy", "name": "aifeedbackliteracy", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Contextualised Learning: Aligns content with learner backgrounds (0–10)", "id": "contextualisedlearning", "name": "contextualisedlearning", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "agency", "name": "agency", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "Customizable reporting, tailored interventions, school-specific modifications (0–10)", "id": "customreporting", "name": "customreporting", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Preserves teacher autonomy in planning, assessment, and design (0–10)", "id": "teacherautonomy", "name": "teacherautonomy", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Maintains assessment reliability and validity (0–10)", "id": "assessmentreliability", "name": "assessmentreliability", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Provides independent evidence of impact (0–10)", "id": "evidenceimpact", "name": "evidenceimpact", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Contextualized for UK or relevant territory (0–10)", "id": "contextualised", "name": "contextualised", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Reduces workload for planning, lesson creation, and assessment (0–10)", "id": "reduceworkload", "name": "reduceworkload", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Improves efficiency in marking, feedback, and reporting (0–10)", "id": "efficiency", "name": "efficiency", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Simplifies school-wide data analysis (0–10)", "id": "dataanalysis", "name": "dataanalysis", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Speeds up parent-facing reporting and communication (0–10)", "id": "parentreporting", "name": "parentreporting", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Assists in non-curricular effectiveness (e.g., behaviour management) (0–10)", "id": "noncurricular", "name": "noncurricular", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Facilitates personalized learning and engagement (0–10)", "id": "personalised", "name": "personalised", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Delivers other productivity benefits (0–10)", "id": "otherproductivity", "name": "otherproductivity", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Enhances learning efficiency (0–10)", "id": "learningefficiency", "name": "learningefficiency", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Supports ambitious learning outcomes (0–10)", "id": "ambitiousoutcomes", "name": "ambitiousoutcomes", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Sparks curiosity and engagement (0–10)", "id": "curiosity", "name": "curiosity", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Adaptive Learning: Adjusts pace/content to learner needs (0–10)", "id": "adaptivelearning", "name": "adaptivelearning", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Formative Feedback: Delivers immediate, targeted feedback (0–10)", "id": "formativefeedback", "name": "formativefeedback", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "AI Feedback Literacy: Builds student understanding of AI feedback (0–10)", "id": "aifeedbackliteracy", "name": "aifeedbackliteracy", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Contextualised Learning: Aligns content with learner backgrounds (0–10)", "id": "contextualisedlearning", "name": "contextualisedlearning", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "agency", "name": "agency", "min": 0, "max": 10, "required": false }
       ]
     },
 
