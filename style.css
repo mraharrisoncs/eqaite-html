@@ -210,7 +210,7 @@ select:focus {
     font-style: italic;
 }
 
-input[type="range"]:disabled {
+input[type="range"]:disabled { 
     opacity: 0.5;
     pointer-events: none;
 }
