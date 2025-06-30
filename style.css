@@ -209,3 +209,8 @@ select:focus {
     text-align: center;
     font-style: italic;
 }
+
+input[type="range"]:disabled { 
+    opacity: 0.5;
+    pointer-events: none;
+}
