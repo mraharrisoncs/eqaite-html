@@ -316,38 +316,56 @@ document.addEventListener('DOMContentLoaded', async () => {
             const doc = new jsPDF();
 
             let y = 10;
-            doc.setFontSize(16);
-            doc.text("EQAITE Evaluation Report", 10, y);
-            y += 10;
 
-            // Add tool name if available
-            doc.setFontSize(13);
-            if (lastToolName) {
-                doc.text(`Tool: ${lastToolName}`, 10, y);
+            // EQAITE logo settings
+            const logoUrl = "./assets/eqaite_wordmarque_1280px.png";
+            const imgProps = { x: 10, y: y, width: 50, height: 18 }; // Adjust as needed
+
+            // Load the logo image and add to PDF
+            const img = new window.Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function() {
+                doc.addImage(img, 'PNG', imgProps.x, imgProps.y, imgProps.width, imgProps.height);
+                y += imgProps.height + 6;
+
+                // Title
+                doc.setFontSize(16);
+                doc.text("EQAITE Evaluation Report", 10, y);
                 y += 10;
-            }
 
-            // Section averages (Dimensions)
-            doc.setFontSize(14);
-            doc.text("Dimensions", 10, y);
-            y += 8;
-            doc.setFontSize(12);
-            Object.entries(sectionAverages).forEach(([section, avg]) => {
-                doc.text(`${section}: ${avg}`, 10, y);
+                // Add tool name if available
+                doc.setFontSize(13);
+                if (lastToolName) {
+                    doc.text(`Tool: ${lastToolName}`, 10, y);
+                    y += 10;
+                }
+
+                // Section averages (Dimensions)
+                doc.setFontSize(14);
+                doc.text("Dimensions", 10, y);
                 y += 8;
-            });
+                doc.setFontSize(12);
+                Object.entries(sectionAverages).forEach(([section, avg]) => {
+                    doc.text(`${section}: ${avg}`, 10, y);
+                    y += 8;
+                });
 
-            // Add radar chart as image
-            const chartCanvas = document.getElementById('radarChart');
-            const chartImg = chartCanvas.toDataURL('image/png', 1.0);
+                // Add radar chart as image
+                const chartCanvas = document.getElementById('radarChart');
+                const chartImg = chartCanvas.toDataURL('image/png', 1.0);
 
-            const pdfImgWidth = 180;
-            const aspectRatio = chartCanvas.height / chartCanvas.width;
-            const pdfImgHeight = pdfImgWidth * aspectRatio;
+                const pdfImgWidth = 180;
+                const aspectRatio = chartCanvas.height / chartCanvas.width;
+                const pdfImgHeight = pdfImgWidth * aspectRatio;
 
-            doc.addImage(chartImg, 'PNG', 10, y, pdfImgWidth, pdfImgHeight);
+                doc.addImage(chartImg, 'PNG', 10, y, pdfImgWidth, pdfImgHeight);
 
-            doc.save(`eqaite_app_report_${timestamp}.pdf`);
+                doc.save(`eqaite_app_report_${timestamp}.pdf`);
+            };
+            img.onerror = function() {
+                alert("Could not load logo image for PDF.");
+            };
+            img.src = logoUrl;
         };
     }
 
