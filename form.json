@@ -17,87 +17,116 @@
     },
 
     {
-      "section": "Pedagogical Value",
-      "description": "This section assesses specific use cases, ensuring AI tools effectively enhance teaching, learning, and productivity. You do not need to answer all questions. Choose the questions that align with your use case(s) and leave others blank.",
+      "section": "1.1 Pedagogical Value – All Use Cases",
+      "description": "Assessing general pedagogical value for all use cases.",
       "questions": [
-        { "type": "range", "label": "Customizable reporting, tailored interventions, school-specific modifications (0–10)", "id": "customreporting", "name": "customreporting", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Preserves teacher autonomy in planning, assessment, and design (0–10)", "id": "teacherautonomy", "name": "teacherautonomy", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Maintains assessment reliability and validity (0–10)", "id": "assessmentreliability", "name": "assessmentreliability", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Provides independent evidence of impact (0–10)", "id": "evidenceimpact", "name": "evidenceimpact", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Contextualized for UK or relevant territory (0–10)", "id": "contextualised", "name": "contextualised", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Reduces workload for planning, lesson creation, and assessment (0–10)", "id": "reduceworkload", "name": "reduceworkload", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Improves efficiency in marking, feedback, and reporting (0–10)", "id": "efficiency", "name": "efficiency", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Simplifies school-wide data analysis (0–10)", "id": "dataanalysis", "name": "dataanalysis", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Speeds up parent-facing reporting and communication (0–10)", "id": "parentreporting", "name": "parentreporting", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Assists in non-curricular effectiveness (e.g., behaviour management) (0–10)", "id": "noncurricular", "name": "noncurricular", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Facilitates personalized learning and engagement (0–10)", "id": "personalised", "name": "personalised", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Delivers other productivity benefits (0–10)", "id": "otherproductivity", "name": "otherproductivity", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Enhances learning efficiency (0–10)", "id": "learningefficiency", "name": "learningefficiency", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Supports ambitious learning outcomes (0–10)", "id": "ambitiousoutcomes", "name": "ambitiousoutcomes", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Sparks curiosity and engagement (0–10)", "id": "curiosity", "name": "curiosity", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Adaptive Learning: Adjusts pace/content to learner needs (0–10)", "id": "adaptivelearning", "name": "adaptivelearning", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Formative Feedback: Delivers immediate, targeted feedback (0–10)", "id": "formativefeedback", "name": "formativefeedback", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "AI Feedback Literacy: Builds student understanding of AI feedback (0–10)", "id": "aifeedbackliteracy", "name": "aifeedbackliteracy", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Contextualised Learning: Aligns content with learner backgrounds (0–10)", "id": "contextualisedlearning", "name": "contextualisedlearning", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "agency", "name": "agency", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.11 Customisation: Allows customisation of reporting features, tailored interventions, and school-specific modifications (0–10)", "id": "customisation", "name": "customisation", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.12 Autonomy: Preserves teacher autonomy, ensuring control over lesson planning, assessment, and instructional design (0–10)", "id": "autonomy", "name": "autonomy", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.13 Assessment: Maintains reliability and validity of assessment (0–10)", "id": "assessment", "name": "assessment", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.14 Evidence: Provides independent evidence of impact (0–10)", "id": "evidence", "name": "evidence", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.15 Context: Suitable for the UK or relevant territory (0–10)", "id": "context", "name": "context", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.16 Collaboration: Supports teacher networking, resource sharing, student peer interaction, and/or community-building (0–10)", "id": "collaboration", "name": "collaboration", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.17 SAMR Level: Enables pedagogical transformation along the SAMR continuum (0–10)", "id": "samr", "name": "samr", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "Safeguarding and Security",
-      "description": "0–2: Lacks alignment with safeguarding, data protection, or compliance requirements. 3–5: Addresses basic compliance but with gaps. 6–8: Meets most expectations. 9–10: Fully aligns with policies; comprehensive oversight.",
+      "section": "1.2 Pedagogical Value – Teaching with AI",
+      "description": "Teacher use of AI in the classroom.",
       "questions": [
-        { "type": "range", "label": "Safeguarding: Prioritizes safeguarding, moderation, reporting, logging, and guardrails (0–10)", "id": "safeguarding", "name": "safeguarding", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Governance: Provides oversight, compliance, audit logs, and intervention features (0–10)", "id": "governance", "name": "governance", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Age rating: Suitable for target users per vendor and third-party ratings (0–10)", "id": "agerating", "name": "agerating", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Data Protection: Secures information, compliant with DPA/GDPR (0–10)", "id": "dataprotection", "name": "dataprotection", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Compliance: Aligns with government, trust, and school policies (0–10)", "id": "compliance", "name": "compliance", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Academic integrity: Minimizes risks of cheating/plagiarism (0–10)", "id": "integrity", "name": "integrity", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "1.21 Efficiency: Enhances learning efficiency (0–10)", "id": "efficiency", "name": "efficiency", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.22 Outcomes: Supports more ambitious learning outcomes (0–10)", "id": "outcomes", "name": "outcomes", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.23 Scaffolding: Supports semantic profiling and scaffolding (0–10)", "id": "scaffolding", "name": "scaffolding", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.24 Engagement: Sparks curiosity and engagement (0–10)", "id": "engagement", "name": "engagement", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "Fairness and Ethics",
-      "description": "0–2: Disregards equity, bias, or ethics. 3–5: Acknowledges but lacks protections. 6–8: Applies ethical principles, mitigates bias. 9–10: Strong safeguards, transparent and inclusive.",
+      "section": "1.3 Pedagogical Value – Teacher Productivity",
+      "description": "Teacher use of AI for productivity.",
       "questions": [
-        { "type": "range", "label": "Equity: Provides equitable access for all students (0–10)", "id": "equity", "name": "equity", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Bias: Reduces bias, ensures diverse perspectives (0–10)", "id": "bias", "name": "bias", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Anthropomorphism: Avoids anthropomorphism and related biases (0–10)", "id": "anthropomorphism", "name": "anthropomorphism", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "User IP: Avoids misuse of users’ intellectual property (0–10)", "id": "userip", "name": "userip", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Ethically trained: Uses only permitted or copyright-free material (0–10)", "id": "ethicaltrain", "name": "ethicaltrain", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "xAI: Supports explainable AI for user understanding (0–10)", "id": "xai", "name": "xai", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "1.31 Planning: Speeds curriculum and lesson creation (0–10)", "id": "planning", "name": "planning", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.32 Personalisation: Facilitates creation of personalised learning materials (0–10)", "id": "personalisation", "name": "personalisation", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.33 Marking: Improves efficiency in marking, feedback, and reporting (0–10)", "id": "marking", "name": "marking", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.34 Data: Simplifies school-wide data analysis (0–10)", "id": "data", "name": "data", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.35 Reports: Speeds up parent-facing reporting (0–10)", "id": "reports", "name": "reports", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.36 Support: Assists in non-curricular effectiveness (0–10)", "id": "support", "name": "support", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.37 Other: Delivers other productivity benefits (0–10)", "id": "otherproductivity", "name": "otherproductivity", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "Cost",
-      "description": "0–2: Unpredictable or unclear value. 3–5: Affordable but with constraints. 6–8: Reasonable, predictable, acceptable workload. 9–10: Cost-efficient, low overhead, budget-aligned. NB, high values are desirable, they represent good value.",
+      "section": "1.4 Pedagogical Value – Learning with AI",
+      "description": "Learner use of AI in the classroom.",
       "questions": [
-        { "type": "range", "label": "TCO: Affordable total cost of ownership, predictable model (0–10)", "id": "tco", "name": "tco", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Training: Minimizes training burden, easy adoption (0–10)", "id": "training", "name": "training", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Integration: Fits into existing curricula and workflows (0–10)", "id": "integration", "name": "integration", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "1.41 Adaptive: Adjusts pace and content to match learners’ needs (0–10)", "id": "adaptive", "name": "adaptive", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.42 Formative: Delivers immediate, targeted feedback (0–10)", "id": "formative", "name": "formative", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.43 Feedback Literacy: Builds student understanding of AI-generated feedback (0–10)", "id": "feedbackliteracy", "name": "feedbackliteracy", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.44 Contextualised: Aligns content with learner backgrounds (0–10)", "id": "contextualisedlearning", "name": "contextualisedlearning", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.45 Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "agency", "name": "agency", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "Operability",
-      "description": "0–2: Poor fit or lacking support. 3–5: Basic integration, limited support. 6–8: Fits systems, adaptable, standard support. 9–10: Seamless, adaptable, strong support.",
+      "section": "2. Safeguarding and Security",
+      "description": "Safeguarding, compliance, and security.",
       "questions": [
-        { "type": "range", "label": "Interoperability: Supports school-wide systems and standards (0–10)", "id": "interoperability", "name": "interoperability", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Customisable: Enables teacher customisation (0–10)", "id": "customisable", "name": "customisable", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Supported: Ongoing teacher support provided (0–10)", "id": "supported", "name": "supported", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "No lock-in: Allows easy transition and data export (0–10)", "id": "nolockin", "name": "nolockin", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Feedback welcome: Mechanisms for user feedback (0–10)", "id": "feedbackwelcome", "name": "feedbackwelcome", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "2.1 Safeguarding: Prioritizes safeguarding, moderation, reporting, logging, and guardrails (0–10)", "id": "safeguarding", "name": "safeguarding", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.2 Governance: Provides oversight, compliance, audit logs, and intervention features (0–10)", "id": "governance", "name": "governance", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.3 Age rating: Suitable for target users per vendor and third-party ratings (0–10)", "id": "agerating", "name": "agerating", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.4 Data Protection: Secures information, compliant with DPA/GDPR (0–10)", "id": "dataprotection", "name": "dataprotection", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.5 Compliance: Aligns with government, trust, and school policies (0–10)", "id": "compliance", "name": "compliance", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.6 Academic integrity: Minimizes risks of cheating/plagiarism (0–10)", "id": "integrity", "name": "integrity", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.7 Emerging risks: Addresses emerging safeguarding risks (0–10)", "id": "emergingrisks", "name": "emergingrisks", "min": 0, "max": 10, "required": true }
       ]
     },
 
     {
-      "section": "Sustainability",
-      "description": "0–2: No visible efforts. 3–5: Some claims, limited transparency. 6–8: Energy-conscious, partial transparency. 9–10: Highly efficient, transparent metrics.",
+      "section": "3. Fairness and Ethics",
+      "description": "Equity, bias, ethics, and stakeholder trust.",
       "questions": [
-        { "type": "range", "label": "Environmental Efficiency: Low environmental cost, efficient computing (0–10)", "id": "enviroeff", "name": "enviroeff", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Carbon and Water Transparency: Vendor discloses usage (0–10)", "id": "carbonwater", "name": "carbonwater", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "Vendor Sustainability Commitments: Climate-conscious practices (0–10)", "id": "vendorsustain", "name": "vendorsustain", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "3.1 Equity: Supports equitable access for all students (0–10)", "id": "equity", "name": "equity", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.2 Bias: Reduces bias, ensures diverse perspectives (0–10)", "id": "bias", "name": "bias", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.3 Anthropomorphism: Avoids anthropomorphism and related biases (0–10)", "id": "anthropomorphism", "name": "anthropomorphism", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.4 User IP use: Avoids misuse of users’ intellectual property (0–10)", "id": "userip", "name": "userip", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.5 Ethically trained: Uses only permitted or copyright-free material (0–10)", "id": "ethicaltrain", "name": "ethicaltrain", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.6 xAI: Supports explainable AI for user understanding (0–10)", "id": "xai", "name": "xai", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.7 Stakeholder Trust: Positively regarded by key stakeholders (0–10)", "id": "stakeholdertrust", "name": "stakeholdertrust", "min": 0, "max": 10, "required": true }
+      ]
+    },
+
+    {
+      "section": "4. Cost and Commercial Considerations",
+      "description": "Cost, training, integration, and business model.",
+      "questions": [
+        { "type": "range", "label": "4.1 TCO: Affordable total cost of ownership, predictable model (0–10)", "id": "tco", "name": "tco", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.2 Training: Minimizes training burden, easy adoption (0–10)", "id": "training", "name": "training", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.3 Integration: Fits into existing curricula and workflows (0–10)", "id": "integration", "name": "integration", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.4 Change Management Readiness: Supports low-disruption implementation (0–10)", "id": "changereadiness", "name": "changereadiness", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.5 Business Model Transparency: Clear articulation of profit motive, data monetisation, and commercial influence (0–10)", "id": "businesstransparency", "name": "businesstransparency", "min": 0, "max": 10, "required": true }
+      ]
+    },
+
+    {
+      "section": "5. Operability",
+      "description": "Interoperability, support, feedback, and collaboration.",
+      "questions": [
+        { "type": "range", "label": "5.1 Interoperability: Supports school-wide systems and standards (0–10)", "id": "interoperability", "name": "interoperability", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.2 Customisation: Enables teacher customisation (0–10)", "id": "customisationop", "name": "customisationop", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.3 Supported: Ongoing teacher support provided (0–10)", "id": "supported", "name": "supported", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.4 No lock-in: Allows easy transition and data export (0–10)", "id": "nolockin", "name": "nolockin", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.5 Feedback welcome: Mechanisms for user feedback (0–10)", "id": "feedbackwelcome", "name": "feedbackwelcome", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.6 Collaboration Features: Enables teacher networking, resource sharing, or student peer interaction (0–10)", "id": "collaborationop", "name": "collaborationop", "min": 0, "max": 10, "required": true }
+      ]
+    },
+
+    {
+      "section": "6. Sustainability",
+      "description": "Environmental efficiency and sustainability commitments.",
+      "questions": [
+        { "type": "range", "label": "6.1 Environmental Efficiency: Low environmental cost, efficient computing (0–10)", "id": "enviroeff", "name": "enviroeff", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "6.2 Carbon and Water Transparency: Vendor discloses usage (0–10)", "id": "carbonwater", "name": "carbonwater", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "6.3 Vendor Sustainability Commitments: Climate-conscious practices (0–10)", "id": "vendorsustain", "name": "vendorsustain", "min": 0, "max": 10, "required": true }
       ]
     },
 
