@@ -232,12 +232,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             sectionAverages[section] = count ? (sum / count).toFixed(2) : '';
             // Add averages to formValues for CSV
-            formValues[section] = sectionAverages[section];
+            // formValues[section] = sectionAverages[section];
         }
 
         // --- All code below here should be OUTSIDE the for-loop ---
         // Prepare data for radar chart
-        const radarLabels = Object.keys(sectionAverages);
+        const radarLabels = Object.keys(sectionAverages).map(label =>
+            label.split(' - ')); // Array for multi-line labels
+    console.log(radarLabels);
         const radarData = Object.values(sectionAverages).map(val => Number(val));
 
         // Draw radar chart
@@ -372,7 +374,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Get section headings for radar chart labels
     const radarLabels = formConfig.fields
         .filter(field => field.section && field.questions)
-        .map(field => field.section);
+        .map(field => field.section.split(' - ')); // <-- wrap here too!
 
     // Set blank data (all zeros)
     const radarData = radarLabels.map(() => 0);

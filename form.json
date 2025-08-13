@@ -7,6 +7,7 @@
     {
       "type": "select",
       "label": "Educational Setting",
+      "id": "setting",
       "name": "setting",
       "required": false,
       "options": [
@@ -17,93 +18,93 @@
     },
 
     {
-      "section": "1.1 Pedagogical Value – All Use Cases",
+      "section": "1.1 Pedagogical Value - All Use Cases",
       "description": "Assessing general pedagogical value for all use cases.",
       "questions": [
-        { "type": "range", "label": "1.11 Customisation: Allows customisation of reporting features, tailored interventions, and school-specific modifications (0–10)", "id": "customisation", "name": "customisation", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.12 Autonomy: Preserves teacher autonomy, ensuring control over lesson planning, assessment, and instructional design (0–10)", "id": "autonomy", "name": "autonomy", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.13 Assessment: Maintains reliability and validity of assessment (0–10)", "id": "assessment", "name": "assessment", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.14 Evidence: Provides independent evidence of impact (0–10)", "id": "evidence", "name": "evidence", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.15 Context: Suitable for the UK or relevant territory (0–10)", "id": "context", "name": "context", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.16 Collaboration: Supports teacher networking, resource sharing, student peer interaction, and/or community-building (0–10)", "id": "collaboration", "name": "collaboration", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.17 SAMR Level: Enables pedagogical transformation along the SAMR continuum (0–10)", "id": "samr", "name": "samr", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.11 Customisation: Allows customisation of reporting features, tailored interventions, and school-specific modifications (0–10)", "id": "c1_11_customisation", "name": "c1_11_customisation", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.12 Autonomy: Preserves teacher autonomy, ensuring control over lesson planning, assessment, and instructional design (0–10)", "id": "c1_12_autonomy", "name": "c1_12_autonomy", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.13 Assessment: Maintains reliability and validity of assessment (0–10)", "id": "c1_13_assessment", "name": "c1_13_assessment", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.14 Evidence: Provides independent evidence of impact (0–10)", "id": "c1_14_evidence", "name": "c1_14_evidence", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.15 Context: Suitable for the UK or relevant territory (0–10)", "id": "c1_15_context", "name": "c1_15_context", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.16 Collaboration: Supports teacher networking, resource sharing, student peer interaction, and/or community-building (0–10)", "id": "c1_16_collaboration", "name": "c1_16_collaboration", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.17 SAMR Level: Enables pedagogical transformation along the SAMR continuum (0–10)", "id": "c1_17_samr_level", "name": "c1_17_samr_level", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "1.2 Pedagogical Value – Teaching with AI",
+      "section": "1.2 Pedagogical Value - Teaching with AI",
       "description": "Teacher use of AI in the classroom.",
       "questions": [
-        { "type": "range", "label": "1.21 Efficiency: Enhances learning efficiency (0–10)", "id": "efficiency", "name": "efficiency", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.22 Outcomes: Supports more ambitious learning outcomes (0–10)", "id": "outcomes", "name": "outcomes", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.23 Scaffolding: Supports semantic profiling and scaffolding (0–10)", "id": "scaffolding", "name": "scaffolding", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.24 Engagement: Sparks curiosity and engagement (0–10)", "id": "engagement", "name": "engagement", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.21 Efficiency: Enhances learning efficiency (0–10)", "id": "c1_21_efficiency", "name": "c1_21_efficiency", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.22 Outcomes: Supports more ambitious learning outcomes (0–10)", "id": "c1_22_outcomes", "name": "c1_22_outcomes", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.23 Scaffolding: Supports semantic profiling and scaffolding (0–10)", "id": "c1_23_scaffolding", "name": "c1_23_scaffolding", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.24 Engagement: Sparks curiosity and engagement (0–10)", "id": "c1_24_engagement", "name": "c1_24_engagement", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "1.3 Pedagogical Value – Teacher Productivity",
+      "section": "1.3 Pedagogical Value - Teacher Productivity",
       "description": "Teacher use of AI for productivity.",
       "questions": [
-        { "type": "range", "label": "1.31 Planning: Speeds curriculum and lesson creation (0–10)", "id": "planning", "name": "planning", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.32 Personalisation: Facilitates creation of personalised learning materials (0–10)", "id": "personalisation", "name": "personalisation", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.33 Marking: Improves efficiency in marking, feedback, and reporting (0–10)", "id": "marking", "name": "marking", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.34 Data: Simplifies school-wide data analysis (0–10)", "id": "data", "name": "data", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.35 Reports: Speeds up parent-facing reporting (0–10)", "id": "reports", "name": "reports", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.36 Support: Assists in non-curricular effectiveness (0–10)", "id": "support", "name": "support", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.37 Other: Delivers other productivity benefits (0–10)", "id": "otherproductivity", "name": "otherproductivity", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.31 Planning: Speeds curriculum and lesson creation (0–10)", "id": "c1_31_planning", "name": "c1_31_planning", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.32 Personalisation: Facilitates creation of personalised learning materials (0–10)", "id": "c1_32_personalisation", "name": "c1_32_personalisation", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.33 Marking: Improves efficiency in marking, feedback, and reporting (0–10)", "id": "c1_33_marking", "name": "c1_33_marking", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.34 Data: Simplifies school-wide data analysis (0–10)", "id": "c1_34_data", "name": "c1_34_data", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.35 Reports: Speeds up parent-facing reporting (0–10)", "id": "c1_35_reports", "name": "c1_35_reports", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.36 Support: Assists in non-curricular effectiveness (0–10)", "id": "c1_36_support", "name": "c1_36_support", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.37 Other: Delivers other productivity benefits (0–10)", "id": "c1_37_other", "name": "c1_37_other", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "1.4 Pedagogical Value – Learning with AI",
+      "section": "1.4 Pedagogical Value - Learning with AI",
       "description": "Learner use of AI in the classroom.",
       "questions": [
-        { "type": "range", "label": "1.41 Adaptive: Adjusts pace and content to match learners’ needs (0–10)", "id": "adaptive", "name": "adaptive", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.42 Formative: Delivers immediate, targeted feedback (0–10)", "id": "formative", "name": "formative", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.43 Feedback Literacy: Builds student understanding of AI-generated feedback (0–10)", "id": "feedbackliteracy", "name": "feedbackliteracy", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.44 Contextualised: Aligns content with learner backgrounds (0–10)", "id": "contextualisedlearning", "name": "contextualisedlearning", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.45 Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "agency", "name": "agency", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.41 Adaptive: Adjusts pace and content to match learners’ needs (0–10)", "id": "c1_41_adaptive", "name": "c1_41_adaptive", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.42 Formative: Delivers immediate, targeted feedback (0–10)", "id": "c1_42_formative", "name": "c1_42_formative", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.43 Feedback Literacy: Builds student understanding of AI-generated feedback (0–10)", "id": "c1_43_feedback_literacy", "name": "c1_43_feedback_literacy", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.44 Contextualised: Aligns content with learner backgrounds (0–10)", "id": "c1_44_contextualised", "name": "c1_44_contextualised", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.45 Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "c1_45_agency", "name": "c1_45_agency", "min": 0, "max": 10, "required": false }
       ]
     },
 
     {
-      "section": "2. Safeguarding and Security",
+      "section": "2. Safeguarding & Security",
       "description": "Safeguarding, compliance, and security.",
       "questions": [
-        { "type": "range", "label": "2.1 Safeguarding: Prioritizes safeguarding, moderation, reporting, logging, and guardrails (0–10)", "id": "safeguarding", "name": "safeguarding", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.2 Governance: Provides oversight, compliance, audit logs, and intervention features (0–10)", "id": "governance", "name": "governance", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.3 Age rating: Suitable for target users per vendor and third-party ratings (0–10)", "id": "agerating", "name": "agerating", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.4 Data Protection: Secures information, compliant with DPA/GDPR (0–10)", "id": "dataprotection", "name": "dataprotection", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.5 Compliance: Aligns with government, trust, and school policies (0–10)", "id": "compliance", "name": "compliance", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.6 Academic integrity: Minimizes risks of cheating/plagiarism (0–10)", "id": "integrity", "name": "integrity", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.7 Emerging risks: Addresses emerging safeguarding risks (0–10)", "id": "emergingrisks", "name": "emergingrisks", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "2.1 Safeguarding: Prioritizes safeguarding, moderation, reporting, logging, and guardrails (0–10)", "id": "c2_01_safeguarding", "name": "c2_01_safeguarding", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.2 Governance: Provides oversight, compliance, audit logs, and intervention features (0–10)", "id": "c2_02_governance", "name": "c2_02_governance", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.3 Age rating: Suitable for target users per vendor and third-party ratings (0–10)", "id": "c2_03_age_rating", "name": "c2_03_age_rating", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.4 Data Protection: Secures information, compliant with DPA/GDPR (0–10)", "id": "c2_04_data_protection", "name": "c2_04_data_protection", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.5 Compliance: Aligns with government, trust, and school policies (0–10)", "id": "c2_05_compliance", "name": "c2_05_compliance", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.6 Academic integrity: Minimizes risks of cheating/plagiarism (0–10)", "id": "c2_06_academic_integrity", "name": "c2_06_academic_integrity", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.7 Emerging risks: Addresses emerging safeguarding risks (0–10)", "id": "c2_07_emerging_risks", "name": "c2_07_emerging_risks", "min": 0, "max": 10, "required": true }
       ]
     },
 
     {
-      "section": "3. Fairness and Ethics",
+      "section": "3. Fairness & Ethics",
       "description": "Equity, bias, ethics, and stakeholder trust.",
       "questions": [
-        { "type": "range", "label": "3.1 Equity: Supports equitable access for all students (0–10)", "id": "equity", "name": "equity", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "3.2 Bias: Reduces bias, ensures diverse perspectives (0–10)", "id": "bias", "name": "bias", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "3.3 Anthropomorphism: Avoids anthropomorphism and related biases (0–10)", "id": "anthropomorphism", "name": "anthropomorphism", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "3.4 User IP use: Avoids misuse of users’ intellectual property (0–10)", "id": "userip", "name": "userip", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "3.5 Ethically trained: Uses only permitted or copyright-free material (0–10)", "id": "ethicaltrain", "name": "ethicaltrain", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "3.6 xAI: Supports explainable AI for user understanding (0–10)", "id": "xai", "name": "xai", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "3.7 Stakeholder Trust: Positively regarded by key stakeholders (0–10)", "id": "stakeholdertrust", "name": "stakeholdertrust", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "3.1 Equity: Supports equitable access for all students (0–10)", "id": "c3_01_equity", "name": "c3_01_equity", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.2 Bias: Reduces bias, ensures diverse perspectives (0–10)", "id": "c3_02_bias", "name": "c3_02_bias", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.3 Anthropomorphism: Avoids anthropomorphism and related biases (0–10)", "id": "c3_03_anthropomorphism", "name": "c3_03_anthropomorphism", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.4 User IP use: Avoids misuse of users’ intellectual property (0–10)", "id": "c3_04_user_ip_use", "name": "c3_04_user_ip_use", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.5 Ethically trained: Uses only permitted or copyright-free material (0–10)", "id": "c3_05_ethically_trained", "name": "c3_05_ethically_trained", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.6 xAI: Supports explainable AI for user understanding (0–10)", "id": "c3_06_xai", "name": "c3_06_xai", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "3.7 Stakeholder Trust: Positively regarded by key stakeholders (0–10)", "id": "c3_07_stakeholder_trust", "name": "c3_07_stakeholder_trust", "min": 0, "max": 10, "required": true }
       ]
     },
 
     {
-      "section": "4. Cost and Commercial Considerations",
+      "section": "4. Cost & Commercials",
       "description": "Cost, training, integration, and business model.",
       "questions": [
-        { "type": "range", "label": "4.1 TCO: Affordable total cost of ownership, predictable model (0–10)", "id": "tco", "name": "tco", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "4.2 Training: Minimizes training burden, easy adoption (0–10)", "id": "training", "name": "training", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "4.3 Integration: Fits into existing curricula and workflows (0–10)", "id": "integration", "name": "integration", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "4.4 Change Management Readiness: Supports low-disruption implementation (0–10)", "id": "changereadiness", "name": "changereadiness", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "4.5 Business Model Transparency: Clear articulation of profit motive, data monetisation, and commercial influence (0–10)", "id": "businesstransparency", "name": "businesstransparency", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "4.1 TCO: Affordable total cost of ownership, predictable model (0–10)", "id": "c4_01_tco", "name": "c4_01_tco", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.2 Training: Minimizes training burden, easy adoption (0–10)", "id": "c4_02_training", "name": "c4_02_training", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.3 Integration: Fits into existing curricula and workflows (0–10)", "id": "c4_03_integration", "name": "c4_03_integration", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.4 Change Management Readiness: Supports low-disruption implementation (0–10)", "id": "c4_04_change_management_readiness", "name": "c4_04_change_management_readiness", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "4.5 Business Model Transparency: Clear articulation of profit motive, data monetisation, and commercial influence (0–10)", "id": "c4_05_business_model_transparency", "name": "c4_05_business_model_transparency", "min": 0, "max": 10, "required": true }
       ]
     },
 
@@ -111,12 +112,12 @@
       "section": "5. Operability",
       "description": "Interoperability, support, feedback, and collaboration.",
       "questions": [
-        { "type": "range", "label": "5.1 Interoperability: Supports school-wide systems and standards (0–10)", "id": "interoperability", "name": "interoperability", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "5.2 Customisation: Enables teacher customisation (0–10)", "id": "customisationop", "name": "customisationop", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "5.3 Supported: Ongoing teacher support provided (0–10)", "id": "supported", "name": "supported", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "5.4 No lock-in: Allows easy transition and data export (0–10)", "id": "nolockin", "name": "nolockin", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "5.5 Feedback welcome: Mechanisms for user feedback (0–10)", "id": "feedbackwelcome", "name": "feedbackwelcome", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "5.6 Collaboration Features: Enables teacher networking, resource sharing, or student peer interaction (0–10)", "id": "collaborationop", "name": "collaborationop", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "5.1 Interoperability: Supports school-wide systems and standards (0–10)", "id": "c5_01_interoperability", "name": "c5_01_interoperability", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.2 Customisation: Enables teacher customisation (0–10)", "id": "c5_02_customisation", "name": "c5_02_customisation", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.3 Supported: Ongoing teacher support provided (0–10)", "id": "c5_03_supported", "name": "c5_03_supported", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.4 No lock-in: Allows easy transition and data export (0–10)", "id": "c5_04_no_lock_in", "name": "c5_04_no_lock_in", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.5 Feedback welcome: Mechanisms for user feedback (0–10)", "id": "c5_05_feedback_welcome", "name": "c5_05_feedback_welcome", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "5.6 Collaboration Features: Enables teacher networking, resource sharing, or student peer interaction (0–10)", "id": "c5_06_collaboration_features", "name": "c5_06_collaboration_features", "min": 0, "max": 10, "required": true }
       ]
     },
 
@@ -124,9 +125,9 @@
       "section": "6. Sustainability",
       "description": "Environmental efficiency and sustainability commitments.",
       "questions": [
-        { "type": "range", "label": "6.1 Environmental Efficiency: Low environmental cost, efficient computing (0–10)", "id": "enviroeff", "name": "enviroeff", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "6.2 Carbon and Water Transparency: Vendor discloses usage (0–10)", "id": "carbonwater", "name": "carbonwater", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "6.3 Vendor Sustainability Commitments: Climate-conscious practices (0–10)", "id": "vendorsustain", "name": "vendorsustain", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "6.1 Environmental Efficiency: Low environmental cost, efficient computing (0–10)", "id": "c6_01_environmental_efficiency", "name": "c6_01_environmental_efficiency", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "6.2 Carbon and Water Transparency: Vendor discloses usage (0–10)", "id": "c6_02_carbon_and_water_transparency", "name": "c6_02_carbon_and_water_transparency", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "6.3 Vendor Sustainability Commitments: Climate-conscious practices (0–10)", "id": "c6_03_vendor_sustainability_commitments", "name": "c6_03_vendor_sustainability_commitments", "min": 0, "max": 10, "required": true }
       ]
     },
 
