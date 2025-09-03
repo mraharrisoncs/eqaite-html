@@ -27,7 +27,8 @@
         { "type": "range", "label": "1.14 Evidence: Provides independent evidence of impact (0–10)", "id": "c1_14_evidence", "name": "c1_14_evidence", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.15 Context: Suitable for the UK or relevant territory (0–10)", "id": "c1_15_context", "name": "c1_15_context", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.16 Collaboration: Supports teacher networking, resource sharing, student peer interaction, and/or community-building (0–10)", "id": "c1_16_collaboration", "name": "c1_16_collaboration", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.17 SAMR Level: Enables pedagogical transformation along the SAMR continuum (0–10)", "id": "c1_17_samr_level", "name": "c1_17_samr_level", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.17 SAMR Level: Enables pedagogical transformation along the SAMR continuum (0–10)", "id": "c1_17_samr_level", "name": "c1_17_samr_level", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.18 Academic integrity: Minimizes academic integrity risks including so-called “cheating” or plagiarism in independent work (0–10)", "id": "c1_18_academic_integrity", "name": "c1_18_academic_integrity", "min": 0, "max": 10, "required": false }
       ]
     },
 
@@ -72,13 +73,14 @@
       "section": "2. Safeguarding & Security",
       "description": "Safeguarding, compliance, and security.",
       "questions": [
-        { "type": "range", "label": "2.1 Safeguarding: Prioritizes safeguarding, moderation, reporting, logging, and guardrails (0–10)", "id": "c2_01_safeguarding", "name": "c2_01_safeguarding", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.2 Governance: Provides oversight, compliance, audit logs, and intervention features (0–10)", "id": "c2_02_governance", "name": "c2_02_governance", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.3 Age rating: Suitable for target users per vendor and third-party ratings (0–10)", "id": "c2_03_age_rating", "name": "c2_03_age_rating", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.4 Data Protection: Secures information, compliant with DPA/GDPR (0–10)", "id": "c2_04_data_protection", "name": "c2_04_data_protection", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.5 Compliance: Aligns with government, trust, and school policies (0–10)", "id": "c2_05_compliance", "name": "c2_05_compliance", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.6 Academic integrity: Minimizes risks of cheating/plagiarism (0–10)", "id": "c2_06_academic_integrity", "name": "c2_06_academic_integrity", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.7 Emerging risks: Addresses emerging safeguarding risks (0–10)", "id": "c2_07_emerging_risks", "name": "c2_07_emerging_risks", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "2.1 Four Cs: Prioritises safeguarding to limit content, contact, conduct and contract risks (0–10)", "id": "c2_01_four_cs", "name": "c2_01_four_cs", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.2 Filtering & monitoring: Blocks harmful content in inputs and outputs (0–10)", "id": "c2_02_filtering_monitoring", "name": "c2_02_filtering_monitoring", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.3 Governance: Provides oversight, ensuring compliance, safeguarding protocols, audit logs, and teacher intervention features (0–10)", "id": "c2_03_governance", "name": "c2_03_governance", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.4 Age rating: Vendor minimum age and third-party measures suggest suitablility for the target users. (0–10)", "id": "c2_04_age_rating", "name": "c2_04_age_rating", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.5 Privacy and Data Protection: Acts responsibly with sensitive student and teacher information. (0–10)", "id": "c2_05_privacy_data_protection", "name": "c2_05_privacy_data_protection", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.6 Compliance: Complies with all relevant regulations related to tool purpose (0–10)", "id": "c2_06_compliance", "name": "c2_06_compliance", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.7 Resilience: Operates safely and reliably, even under attack (0–10)", "id": "c2_07_resilience", "name": "c2_07_resilience", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.8 Emerging risks: Vendor regularly reviews and addresses emerging safeguarding risks (0–10)", "id": "c2_08_emerging_risks", "name": "c2_08_emerging_risks", "min": 0, "max": 10, "required": true }
       ]
     },
 
