@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const safeStamp = (formValues.datestamp || new Date().toISOString()).replace(/[\/ :]/g, '_');
         const dropboxPath = `/eqaite_submissions/eqaite_submission_${safeStamp}.csv`; // change folder/name as needed
 
-        const DROPBOX_TOKEN = getDropboxToken();
+        const DROPBOX_TOKEN = await getDropboxToken();
         if (!DROPBOX_TOKEN) {
             console.error('No Dropbox token available, aborting upload to Dropbox.');
             messageSection.innerHTML = `Submission received locally, but writing to Dropbox skipped (no token). Your results are shown and you may download a PDF below the chart.`;
@@ -464,18 +464,25 @@ function convertToCSV(obj) {
     return keys.join(",") + "\n" + values.join(",");
 }
 
-// Provide Dropbox token selection for local dev vs production
-function getDropboxToken() {
+// Replace previous getDropboxToken implementation with this client call
+async function getDropboxToken() {
     const host = window.location.hostname;
     const isLocal = host === 'localhost' || host === '127.0.0.1';
     if (isLocal) {
-        // Dev token for local testing
+        // local dev token (keeps current behaviour)
         return 'sl.u.AGFtivBtEJH6o2hN99iDIWEc300rmgVhshng8op9-JV0BJ6KFE_9HsjTWLTYb7LI5V6x9j7UvtWrxMs_YlfcECD2exZeYJSSlOQA4DuK39lm04B-UqlEibQsAQV0VUQwRc0l5lBpqX3v6P9KhTH3EtS-4FVgjRrcXpFLqi0KVNxMI-qPwMvFuH73PPSnuiSiMrmDHbISSdW9Be4RkYz41H3JLhbzOpYyrr7aW3ZAqObu51I4Ri0AegNoeEogqsTtFyBBUZCxJAaGTpUTsem5VFws6V7NA5GM-GS9Vv0sgifo5e6vKapafiNf2RgFV7ULwOAQmRZm4YEXAVKCFP1ySrhuARZZl_Hs9FJWSX1yRZPqaTzF9DvWaxNFuls5OuvADypN2_vRgmgXvDVSs_1NgRzdBTW94hUtHFKMbccoV9vZF8hWvyRK7S6u7-xN5m2RnZoMfBhX1YQ-WLwjTpIiuaiWQ37k7Ff6jDlZXZJhHUBRGHBZBlWGi2XxBA3cfOWQul1eXd0-sKJUdEa2eC8m-T2bkgF46eNdXZxTcHOfHGXGMsxNVTmvPYT4WM0D4CbZfwNDwtTl9ZojVy9L5ZhpTE7-DVclfk9HfhL_IGWVol7_LGgwwjdspwjd2TDvX0nqk1r1pBhkCiI_wlc14XgHOhQ2UZRLGs5v6jY_TOu8KEq9ZNvZ3wO1oGHDqXnXDZhZ3kuLykPjOdSAPeEcMA2cCbirrY6PvOu0N4AnjVLl7F_VR54mklNZPZi1eAjEORF1ob3Jrmx7Up4BiKA6ol3OG_tcMOGumFMe7lDn2JqsUkhVT-Hjm4Fmu8YSSUjeHNoicR_XIxdijCKMG3srbHZiK4Yq4mNSKfgRIrbHMYK2o3DsFiq2eMz6heDyQHlucJDz48Mc9VIHXMjgqav06A4qlEKhgh2-_w9Pd0JU_C5dY3swAlCgpLUUqsceVxiAZN8KN2HYeTia-ronEL11-r8qkchs_cZURJjCNO3tYCwEI1u89G7hVSRzvZe0LZlyKGjOjV5B0GaPnNi5ul2BYEImfBq6h1RjObw0cT1Wajs6iYyyOpff03ldJ1whEqCAYxD2DWF08idwTTQCYh5UcW2Hi6G7zanXr3FkLZs5V26hj4X2n4_x61AiiDIMuo_GUx9pGs09lyaSKhLIVEwK07yIKHM2A_wa8ElKCOZ6HhE-KKFe0E2iGUTl90RWeOP71futz8xTOqm-4rvBCYIb9ox2OFMbS63shg1Q4w5VGrAaSyophKkVfJ30HRWqDlkKkoOtDDe4BfSo3NEkjV-j96mUjWGp';
     }
-    // Production: expect token injected at build time into window.__ENV.DROPBOX_TOKEN
-    if (window && window.__ENV && window.__ENV.DROPBOX_TOKEN) {
-        return window.__ENV.DROPBOX_TOKEN;
+
+    try {
+        const res = await fetch('/.netlify/functions/getDropboxToken', { method: 'GET' });
+        if (!res.ok) {
+            console.warn('getDropboxToken: server returned', res.status);
+            return '';
+        }
+        const json = await res.json();
+        return json.token || '';
+    } catch (err) {
+        console.warn('getDropboxToken error', err);
+        return '';
     }
-    console.warn('Dropbox token not provided. Uploads will be skipped.');
-    return '';
 }
