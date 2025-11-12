@@ -318,12 +318,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             messageSection.style.display = 'block';
         } else {
             fetch('https://content.dropboxapi.com/2/files/upload', {
-                method: 'POST',
+                method: 'POST', 
                 headers: {
                     'Authorization': `Bearer ${DROPBOX_TOKEN}`,
                     'Content-Type': 'application/octet-stream',
                     'Dropbox-API-Arg': JSON.stringify({
-                        // path: dropboxPath,
+                        // path: dropboxPath , comment out path
                         mode: 'add',
                         autorename: true,
                         mute: false
