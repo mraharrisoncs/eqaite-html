@@ -304,6 +304,44 @@ document.addEventListener('DOMContentLoaded', async () => {
             messageSection.style.display = 'block';
         });
 
+        // Build CSV from formValues (uses helper convertToCSV at end of file)
+        // Replace the token and adjust filename/path as needed
+        const DROPBOX_TOKEN = "sl.u.AGFtivBtEJH6o2hN99iDIWEc300rmgVhshng8op9-JV0BJ6KFE_9HsjTWLTYb7LI5V6x9j7UvtWrxMs_YlfcECD2exZeYJSSlOQA4DuK39lm04B-UqlEibQsAQV0VUQwRc0l5lBpqX3v6P9KhTH3EtS-4FVgjRrcXpFLqi0KVNxMI-qPwMvFuH73PPSnuiSiMrmDHbISSdW9Be4RkYz41H3JLhbzOpYyrr7aW3ZAqObu51I4Ri0AegNoeEogqsTtFyBBUZCxJAaGTpUTsem5VFws6V7NA5GM-GS9Vv0sgifo5e6vKapafiNf2RgFV7ULwOAQmRZm4YEXAVKCFP1ySrhuARZZl_Hs9FJWSX1yRZPqaTzF9DvWaxNFuls5OuvADypN2_vRgmgXvDVSs_1NgRzdBTW94hUtHFKMbccoV9vZF8hWvyRK7S6u7-xN5m2RnZoMfBhX1YQ-WLwjTpIiuaiWQ37k7Ff6jDlZXZJhHUBRGHBZBlWGi2XxBA3cfOWQul1eXd0-sKJUdEa2eC8m-T2bkgF46eNdXZxTcHOfHGXGMsxNVTmvPYT4WM0D4CbZfwNDwtTl9ZojVy9L5ZhpTE7-DVclfk9HfhL_IGWVol7_LGgwwjdspwjd2TDvX0nqk1r1pBhkCiI_wlc14XgHOhQ2UZRLGs5v6jY_TOu8KEq9ZNvZ3wO1oGHDqXnXDZhZ3kuLykPjOdSAPeEcMA2cCbirrY6PvOu0N4AnjVLl7F_VR54mklNZPZi1eAjEORF1ob3Jrmx7Up4BiKA6ol3OG_tcMOGumFMe7lDn2JqsUkhVT-Hjm4Fmu8YSSUjeHNoicR_XIxdijCKMG3srbHZiK4Yq4mNSKfgRIrbHMYK2o3DsFiq2eMz6heDyQHlucJDz48Mc9VIHXMjgqav06A4qlEKhgh2-_w9Pd0JU_C5dY3swAlCgpLUUqsceVxiAZN8KN2HYeTia-ronEL11-r8qkchs_cZURJjCNO3tYCwEI1u89G7hVSRzvZe0LZlyKGjOjV5B0GaPnNi5ul2BYEImfBq6h1RjObw0cT1Wajs6iYyyOpff03ldJ1whEqCAYxD2DWF08idwTTQCYh5UcW2Hi6G7zanXr3FkLZs5V26hj4X2n4_x61AiiDIMuo_GUx9pGs09lyaSKhLIVEwK07yIKHM2A_wa8ElKCOZ6HhE-KKFe0E2iGUTl90RWeOP71futz8xTOqm-4rvBCYIb9ox2OFMbS63shg1Q4w5VGrAaSyophKkVfJ30HRWqDlkKkoOtDDe4BfSo3NEkjV-j96mUjWGp";
+        const csv = convertToCSV(formValues);
+        const safeStamp = (formValues.datestamp || new Date().toISOString()).replace(/[\/ :]/g, '_');
+        const dropboxPath = `/eqaite/eqaite_submission_${safeStamp}.csv`; // change folder/name as needed
+
+        fetch('https://content.dropboxapi.com/2/files/upload', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${DROPBOX_TOKEN}`,
+                'Content-Type': 'application/octet-stream',
+                'Dropbox-API-Arg': JSON.stringify({
+                    path: dropboxPath,
+                    mode: 'add',
+                    autorename: true,
+                    mute: false
+                })
+            },
+            body: new TextEncoder().encode(csv)
+        })
+        .then(async res => {
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(`Dropbox upload failed: ${res.status} ${text}`);
+            }
+            return res.json();
+        })
+        .then(data => {
+            messageSection.innerHTML = `Thank you for your submission. Your data has been written to Dropbox. Your results are shown, and you may download a PDF below the chart.`;
+            messageSection.style.display = 'block';
+        })
+        .catch(error => {
+            console.error("Dropbox upload error:", error);
+            messageSection.innerHTML = `Submission received locally, but writing to Dropbox failed. See console for details. Your results are shown and you may download a PDF below the chart.`;
+            messageSection.style.display = 'block';
+        });
+
         // Reset form after 2s
         setTimeout(() => form.reset(), 2000);
     });
