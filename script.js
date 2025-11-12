@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let lastToolName = "";
 
     // Handle submit
-    form.addEventListener('submit', function(event) {
+    form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
         const formData = new FormData(form);
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const safeStamp = (formValues.datestamp || new Date().toISOString()).replace(/[\/ :]/g, '_');
         const dropboxPath = `/eqaite_submissions/eqaite_submission_${safeStamp}.csv`; // change folder/name as needed
 
-        const DROPBOX_TOKEN = getDropboxToken();
+        const DROPBOX_TOKEN = await getDropboxToken();
         if (!DROPBOX_TOKEN) {
             console.error('No Dropbox token available, aborting upload to Dropbox.');
             messageSection.innerHTML = `Submission received locally, but writing to Dropbox skipped (no token). Your results are shown and you may download a PDF below the chart.`;
