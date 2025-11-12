@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'Authorization': `Bearer ${DROPBOX_TOKEN}`,
                     'Content-Type': 'application/octet-stream',
                     'Dropbox-API-Arg': JSON.stringify({
-                        // path: dropboxPath , comment out path
+                        path: dropboxPath,
                         mode: 'add',
                         autorename: true,
                         mute: false
