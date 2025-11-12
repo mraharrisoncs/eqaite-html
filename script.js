@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Build CSV from formValues (uses helper convertToCSV at end of file)
         const csv = convertToCSV(formValues);
         const safeStamp = (formValues.datestamp || new Date().toISOString()).replace(/[\/ :]/g, '_');
-        const dropboxPath = `/eqaite_submissions/eqaite_submission_${safeStamp}.csv`; // change folder/name as needed
+        const dropboxPath = `/eqaite-prod/eqaite_submission_${safeStamp}.csv`; // change folder/name as needed
 
         const DROPBOX_TOKEN = await getDropboxToken();
         if (!DROPBOX_TOKEN) {
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     'Authorization': `Bearer ${DROPBOX_TOKEN}`,
                     'Content-Type': 'application/octet-stream',
                     'Dropbox-API-Arg': JSON.stringify({
-                        path: dropboxPath,
+                        // path: dropboxPath,
                         mode: 'add',
                         autorename: true,
                         mute: false
