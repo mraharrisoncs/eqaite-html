@@ -16,11 +16,41 @@
         { "label": "Tertiary", "value": "Tertiary" }
       ]
     },
+    { "type": "text", "label": "Vendor's stated purpose (what does the vendor say this tool is for?)", "id": "vendor_stated_purpose", "name": "vendor_stated_purpose", "required": false },
+    {
+      "type": "select",
+      "label": "Primary use case",
+      "id": "primary_use_case",
+      "name": "primary_use_case",
+      "required": false,
+      "options": [
+        { "label": "Tutoring", "value": "Tutoring" },
+        { "label": "Teacher productivity", "value": "Teacher productivity" },
+        { "label": "Assessment & feedback", "value": "Assessment & feedback" },
+        { "label": "Content creation", "value": "Content creation" },
+        { "label": "Admin & operations", "value": "Admin & operations" },
+        { "label": "Other", "value": "Other" }
+      ]
+    },
+    {
+      "type": "select",
+      "label": "Your school's AI maturity",
+      "id": "school_ai_maturity",
+      "name": "school_ai_maturity",
+      "required": false,
+      "options": [
+        { "label": "No formal AI policy yet", "value": "No formal AI policy yet" },
+        { "label": "Policy in place, limited staff training", "value": "Policy in place, limited staff training" },
+        { "label": "Policy and trained staff, some tools embedded", "value": "Policy and trained staff, some tools embedded" },
+        { "label": "Mature — widespread trained use, regular review", "value": "Mature — widespread trained use, regular review" }
+      ]
+    },
 
     {
       "section": "1.1 Pedagogical Value - All Use Cases",
       "description": "Assessing general pedagogical value for all use cases.",
       "questions": [
+        { "type": "range", "label": "1.10 Purpose–use alignment: The tool is used in ways consistent with its stated/marketed purpose (0–10)", "id": "c1_10_purpose_use_alignment", "name": "c1_10_purpose_use_alignment", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.11 Customisation: Allows customisation of reporting features, tailored interventions, and school-specific modifications (0–10)", "id": "c1_11_customisation", "name": "c1_11_customisation", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.12 Autonomy: Preserves teacher autonomy, ensuring control over lesson planning, assessment, and instructional design (0–10)", "id": "c1_12_autonomy", "name": "c1_12_autonomy", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.13 Assessment: Maintains reliability and validity of assessment (0–10)", "id": "c1_13_assessment", "name": "c1_13_assessment", "min": 0, "max": 10, "required": false },
@@ -28,7 +58,8 @@
         { "type": "range", "label": "1.15 Context: Suitable for the UK or relevant territory (0–10)", "id": "c1_15_context", "name": "c1_15_context", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.16 Collaboration: Supports teacher networking, resource sharing, student peer interaction, and/or community-building (0–10)", "id": "c1_16_collaboration", "name": "c1_16_collaboration", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.17 SAMR Level: Enables pedagogical transformation along the SAMR continuum (0–10)", "id": "c1_17_samr_level", "name": "c1_17_samr_level", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.18 Academic integrity: Minimizes academic integrity risks including so-called “cheating” or plagiarism in independent work (0–10)", "id": "c1_18_academic_integrity", "name": "c1_18_academic_integrity", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.18 Academic integrity: Minimizes academic integrity risks including so-called “cheating” or plagiarism in independent work (0–10)", "id": "c1_18_academic_integrity", "name": "c1_18_academic_integrity", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.19 Curriculum alignment: Supports delivery of the reformed National Curriculum's AI/digital literacy expectations (post-Curriculum & Assessment Review, e.g. AI literacy, data science skills) (0–10)", "id": "c1_19_curriculum_alignment", "name": "c1_19_curriculum_alignment", "min": 0, "max": 10, "required": false }
       ]
     },
 
@@ -65,7 +96,8 @@
         { "type": "range", "label": "1.42 Formative: Delivers immediate, targeted feedback (0–10)", "id": "c1_42_formative", "name": "c1_42_formative", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.43 Feedback Literacy: Builds student understanding of AI-generated feedback (0–10)", "id": "c1_43_feedback_literacy", "name": "c1_43_feedback_literacy", "min": 0, "max": 10, "required": false },
         { "type": "range", "label": "1.44 Contextualised: Aligns content with learner backgrounds (0–10)", "id": "c1_44_contextualised", "name": "c1_44_contextualised", "min": 0, "max": 10, "required": false },
-        { "type": "range", "label": "1.45 Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "c1_45_agency", "name": "c1_45_agency", "min": 0, "max": 10, "required": false }
+        { "type": "range", "label": "1.45 Agency: Supports autonomy, critical thinking, creativity (0–10)", "id": "c1_45_agency", "name": "c1_45_agency", "min": 0, "max": 10, "required": false },
+        { "type": "range", "label": "1.46 Independence by design: Actively builds pupil capability to work without the tool over time, rather than only in the moment of use (0–10)", "id": "c1_46_independence_by_design", "name": "c1_46_independence_by_design", "min": 0, "max": 10, "required": false }
       ]
     },
 
@@ -80,7 +112,8 @@
         { "type": "range", "label": "2.5 Privacy and Data Protection: Acts responsibly with sensitive student and teacher information. (0–10)", "id": "c2_05_privacy_data_protection", "name": "c2_05_privacy_data_protection", "min": 0, "max": 10, "required": true },
         { "type": "range", "label": "2.6 Compliance: Complies with all relevant regulations related to tool purpose (0–10)", "id": "c2_06_compliance", "name": "c2_06_compliance", "min": 0, "max": 10, "required": true },
         { "type": "range", "label": "2.7 Resilience: Operates safely and reliably, even under attack (0–10)", "id": "c2_07_resilience", "name": "c2_07_resilience", "min": 0, "max": 10, "required": true },
-        { "type": "range", "label": "2.8 Emerging risks: Vendor regularly reviews and addresses emerging safeguarding risks (0–10)", "id": "c2_08_emerging_risks", "name": "c2_08_emerging_risks", "min": 0, "max": 10, "required": true }
+        { "type": "range", "label": "2.8 Emerging risks: Vendor regularly reviews and addresses emerging safeguarding risks (0–10)", "id": "c2_08_emerging_risks", "name": "c2_08_emerging_risks", "min": 0, "max": 10, "required": true },
+        { "type": "range", "label": "2.9 Agentic autonomy boundaries: Where the tool acts autonomously across multiple steps, it has clear boundaries and human-in-the-loop checkpoints, and does not take consequential actions (e.g. contacting parents, changing records) without explicit teacher approval (0–10)", "id": "c2_09_agentic_autonomy_boundaries", "name": "c2_09_agentic_autonomy_boundaries", "min": 0, "max": 10, "required": true }
       ]
     },
 
@@ -95,6 +128,55 @@
         { "type": "range", "label": "3.5 Ethically trained: Uses only permitted or copyright-free material (0–10)", "id": "c3_05_ethically_trained", "name": "c3_05_ethically_trained", "min": 0, "max": 10, "required": true },
         { "type": "range", "label": "3.6 xAI: Supports explainable AI for user understanding (0–10)", "id": "c3_06_xai", "name": "c3_06_xai", "min": 0, "max": 10, "required": true },
         { "type": "range", "label": "3.7 Stakeholder Trust: Positively regarded by key stakeholders (0–10)", "id": "c3_07_stakeholder_trust", "name": "c3_07_stakeholder_trust", "min": 0, "max": 10, "required": true }
+      ]
+    },
+
+    {
+      "section": "G1. Cognitive Development",
+      "sectionType": "gate",
+      "description": "Directly reflects EQAITE's cognitive-offloading concern — does the tool build capability or replace it?",
+      "questions": [
+        { "type": "gate", "label": "G1.1 Scaffolded independence: Is the tool designed to build toward pupil independence (e.g. fading support, requiring an attempt before giving answers) rather than defaulting to completing the task for the pupil?", "id": "g1_1_scaffolded_independence", "name": "g1_1_scaffolded_independence", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G1.2 Effortful engagement preserved: Are core cognitive tasks central to the learning objective (composing an argument, doing the calculation, retrieving prior knowledge) left for the pupil rather than fully offloaded by default?", "id": "g1_2_effortful_engagement", "name": "g1_2_effortful_engagement", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G1.3 Transparency of reasoning: Where the tool produces an answer, does it show or explain the reasoning/steps rather than only the end result?", "id": "g1_3_transparency_of_reasoning", "name": "g1_3_transparency_of_reasoning", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G1.4 No premature rescue: Does the tool avoid pushing pupils toward an AI-generated answer while they are still productively struggling?", "id": "g1_4_no_premature_rescue", "name": "g1_4_no_premature_rescue", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G1.5 Evidence and monitoring: Can the vendor point to evidence — internal or independent — that use of the tool does not measurably erode the target skill over time, or that they are actively monitoring for this?", "id": "g1_5_evidence_and_monitoring", "name": "g1_5_evidence_and_monitoring", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] }
+      ]
+    },
+
+    {
+      "section": "G2. Emotional & Social Development",
+      "sectionType": "gate",
+      "description": "Does the tool support healthy peer and social development, or risk displacing it?",
+      "questions": [
+        { "type": "gate", "label": "G2.1 Peer interaction preserved: Does the tool avoid substantially reducing or replacing peer-to-peer interaction and collaboration where that is part of the learning design?", "id": "g2_1_peer_interaction_preserved", "name": "g2_1_peer_interaction_preserved", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G2.2 Emotional attachment safeguards: Does the tool avoid design features that encourage pupils to form parasocial or emotionally dependent relationships with it (persistent \"friend\" personas, excessive anthropomorphism, remembered personal disclosures used to drive engagement)?", "id": "g2_2_emotional_attachment_safeguards", "name": "g2_2_emotional_attachment_safeguards", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G2.3 Healthy social modelling: Where the tool simulates conversation, does it model communication norms appropriate to the age group?", "id": "g2_3_healthy_social_modelling", "name": "g2_3_healthy_social_modelling", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G2.4 Escalation to humans: Does the tool have a clear, working mechanism to direct pupils toward a trusted adult when social or emotional distress is detected, rather than trying to resolve it itself?", "id": "g2_4_escalation_to_humans", "name": "g2_4_escalation_to_humans", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] }
+      ]
+    },
+
+    {
+      "section": "G3. Mental Health",
+      "sectionType": "gate",
+      "description": "Does the tool recognise and appropriately escalate mental health and safeguarding risks?",
+      "questions": [
+        { "type": "gate", "label": "G3.1 Crisis recognition and escalation: Does the tool reliably recognise signals of self-harm, suicidal ideation, or acute distress in pupil input, and respond by directing to appropriate human support rather than attempting to resolve it itself?", "id": "g3_1_crisis_recognition_escalation", "name": "g3_1_crisis_recognition_escalation", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G3.2 No harmful content generation: Will the tool decline to generate content that could encourage or enable self-harm or other harmful behaviours, including under indirect or adversarial prompting?", "id": "g3_2_no_harmful_content_generation", "name": "g3_2_no_harmful_content_generation", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G3.3 Wellbeing-neutral engagement design: Do the tool's engagement mechanics (notifications, streaks, rewards) avoid exploiting anxiety, fear of missing out, or compulsive-use patterns?", "id": "g3_3_wellbeing_neutral_engagement", "name": "g3_3_wellbeing_neutral_engagement", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G3.4 Vendor incident process: Does the vendor have a documented, tested process for handling safeguarding disclosures made via the tool, and has this been shared with the school?", "id": "g3_4_vendor_incident_process", "name": "g3_4_vendor_incident_process", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] }
+      ]
+    },
+
+    {
+      "section": "G4. Manipulation & Exploitation Safeguards",
+      "sectionType": "gate",
+      "description": "Does the tool avoid manipulative or exploitative design targeted at pupils or staff?",
+      "questions": [
+        { "type": "gate", "label": "G4.1 No dark patterns: Does the tool avoid manipulative design (guilt-tripping prompts, false urgency, hidden costs, subscriptions that are hard to cancel) aimed at pupils or staff?", "id": "g4_1_no_dark_patterns", "name": "g4_1_no_dark_patterns", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G4.2 No commercial exploitation of pupils: Does the tool avoid using pupil data or interactions to target pupils with advertising, upselling, or engagement content unrelated to learning?", "id": "g4_2_no_commercial_exploitation", "name": "g4_2_no_commercial_exploitation", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G4.3 Honest capability representation: Are the vendor's marketing and in-product claims about what the AI can do accurate, without overstating capability in ways that could cause over-trust?", "id": "g4_3_honest_capability_representation", "name": "g4_3_honest_capability_representation", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] },
+        { "type": "gate", "label": "G4.4 Age-appropriate persuasion resistance: Does the tool avoid using persuasive techniques disproportionate to the target age group's ability to recognise and resist them?", "id": "g4_4_age_appropriate_persuasion_resistance", "name": "g4_4_age_appropriate_persuasion_resistance", "required": true, "options": [ { "label": "Pass", "value": "pass" }, { "label": "Partial", "value": "partial" }, { "label": "Fail", "value": "fail" } ] }
       ]
     },
 

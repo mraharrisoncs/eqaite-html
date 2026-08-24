@@ -210,7 +210,96 @@ select:focus {
     font-style: italic;
 }
 
-input[type="range"]:disabled { 
+input[type="range"]:disabled {
     opacity: 0.5;
     pointer-events: none;
 }
+
+/* Gate (pass/partial/fail) questions */
+.gate-question label {
+    font-weight: 600;
+}
+
+.gate-radio-group {
+    display: flex;
+    gap: 0.6rem;
+    margin: 0.4rem 0 0.6rem 0;
+    flex-wrap: wrap;
+}
+
+.gate-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--alternative);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 0;
+    background: #fff;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.gate-pill input[type="radio"] {
+    margin: 0;
+}
+
+.gate-pill-pass:has(input:checked) { background: #d4edda; border-color: #28a745; }
+.gate-pill-partial:has(input:checked) { background: #fff3cd; border-color: #e0a800; }
+.gate-pill-fail:has(input:checked) { background: #f8d7da; border-color: #d63638; }
+
+.gate-note {
+    width: 100%;
+    min-height: 2.2rem;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    border: 1px solid var(--alternative);
+    border-radius: 4px;
+    background: #fafafa;
+    color: #555;
+}
+
+/* Gate summary block */
+.gate-summary {
+    max-width: 600px;
+    margin: 40px auto 0 auto;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.07);
+    border: 2px solid var(--dark);
+    text-align: left;
+}
+
+.gate-summary-section {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--alternative);
+}
+
+.gate-summary-counts {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.2rem;
+}
+
+.gate-summary-flagged {
+    margin: 0.4rem 0 0 0;
+    padding-left: 1.2rem;
+    color: #842029;
+}
+
+.gate-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.gate-badge-pass { background: #d4edda; color: #155724; }
+.gate-badge-partial { background: #fff3cd; color: #7a5b00; }
+.gate-badge-incomplete { background: #e2e3e5; color: #41464b; }
+.gate-badge-fail { background: #f8d7da; color: #842029; }

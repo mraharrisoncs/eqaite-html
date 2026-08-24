@@ -54,6 +54,7 @@
                     <!-- The form will be built here by script.js -->
                 </form>
             </div>
+            <div id="gateSummary" class="gate-summary" style="display:none;"></div>
             <div class="radar-container">
                 <div id="messageSection"></div>
                 <div id="radarCaption" class="radar-caption">Evaluation will appear here</div>
@@ -67,6 +68,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Local dev only, gitignored; see env.local.js.example -->
+    <script src="env.local.js" onerror="this.remove()"></script>
     <script src="script.js"></script>
 </body>
 

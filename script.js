@@ -7,12 +7,75 @@ document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('surveyForm');
     form.innerHTML = '';
 
-    // Map to keep track of section questions for averaging
+    // Map to keep track of section questions for averaging (range sections only)
     const sectionMap = {};
+    // Map to keep track of gate section questions (pass/partial/fail sections)
+    const gateMap = {};
 
     formConfig.fields.forEach(field => {
+        // Section with gate (pass/partial/fail) questions
+        if (field.section && field.questions && field.sectionType === 'gate') {
+            const sectionHeader = document.createElement('h2');
+            sectionHeader.textContent = field.section;
+            form.appendChild(sectionHeader);
+
+            if (field.description) {
+                const desc = document.createElement('p');
+                desc.textContent = field.description;
+                desc.style.fontSize = "0.95rem";
+                desc.style.color = "#555";
+                form.appendChild(desc);
+            }
+
+            gateMap[field.section] = [];
+
+            field.questions.forEach(q => {
+                gateMap[field.section].push(q.name);
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'gate-question';
+                wrapper.style.marginBottom = "1rem";
+
+                const label = document.createElement('label');
+                label.textContent = q.label;
+                wrapper.appendChild(label);
+
+                const radioGroup = document.createElement('div');
+                radioGroup.className = 'gate-radio-group';
+
+                q.options.forEach(opt => {
+                    const optId = q.id + "_" + opt.value;
+
+                    const pill = document.createElement('label');
+                    pill.className = 'gate-pill gate-pill-' + opt.value;
+                    pill.setAttribute('for', optId);
+
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.id = optId;
+                    radio.name = q.name;
+                    radio.value = opt.value;
+                    if (q.required) radio.required = true;
+
+                    pill.appendChild(radio);
+                    pill.appendChild(document.createTextNode(opt.label));
+                    radioGroup.appendChild(pill);
+                });
+
+                wrapper.appendChild(radioGroup);
+
+                const note = document.createElement('textarea');
+                note.className = 'gate-note';
+                note.id = q.id + "_note";
+                note.name = q.name + "_note";
+                note.placeholder = "Optional note";
+                wrapper.appendChild(note);
+
+                form.appendChild(wrapper);
+            });
+        }
         // Section with range questions
-        if (field.section && field.questions) {
+        else if (field.section && field.questions) {
             const sectionHeader = document.createElement('h2');
             sectionHeader.textContent = field.section;
             form.appendChild(sectionHeader);
@@ -196,6 +259,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Make these accessible to both handlers
     let sectionAverages = {};
+    let gateResults = {};
+    let overallGateStatus = 'incomplete';
     let timestamp = "";
     let lastToolName = "";
 
@@ -234,6 +299,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Add averages to formValues for CSV
             // formValues[section] = sectionAverages[section];
         }
+
+        // Calculate pass/partial/fail results for each gate section
+        gateResults = {};
+        for (const [section, names] of Object.entries(gateMap)) {
+            const counts = { pass: 0, partial: 0, fail: 0, unassessed: 0 };
+            const items = [];
+            names.forEach(name => {
+                const val = formValues[name] || 'unassessed';
+                counts[val] = (counts[val] || 0) + 1;
+                items.push({ name, value: val, note: formValues[name + '_note'] || '' });
+            });
+            gateResults[section] = {
+                counts,
+                items,
+                status: counts.fail > 0 ? 'fail'
+                    : counts.partial > 0 ? 'partial'
+                    : counts.unassessed > 0 ? 'incomplete'
+                    : 'pass'
+            };
+        }
+        overallGateStatus = Object.values(gateResults).some(g => g.status === 'fail') ? 'fail'
+            : Object.values(gateResults).some(g => g.status === 'partial' || g.status === 'incomplete') ? 'partial'
+            : 'pass';
+        renderGateSummary();
 
         // --- All code below here should be OUTSIDE the for-loop ---
         // Prepare data for radar chart
@@ -353,6 +442,43 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTimeout(() => form.reset(), 2000);
     });
 
+    function renderGateSummary() {
+        const container = document.getElementById('gateSummary');
+        if (!container) return;
+
+        const statusLabels = {
+            pass: 'PASS',
+            partial: 'PARTIAL — REVIEW NEEDED',
+            incomplete: 'INCOMPLETE',
+            fail: 'FAIL — DO NOT PROCEED WITHOUT REVIEW'
+        };
+
+        let html = `<h2>Safety Gates</h2>`;
+        html += `<div class="gate-badge gate-badge-${overallGateStatus}">${statusLabels[overallGateStatus]}</div>`;
+
+        Object.entries(gateResults).forEach(([section, result]) => {
+            html += `<div class="gate-summary-section">`;
+            html += `<strong>${section}</strong> `;
+            html += `<span class="gate-badge gate-badge-${result.status}">${statusLabels[result.status]}</span>`;
+            html += `<div class="gate-summary-counts">Pass: ${result.counts.pass} · Partial: ${result.counts.partial} · Fail: ${result.counts.fail} · Not assessed: ${result.counts.unassessed}</div>`;
+
+            if (result.status === 'fail' || result.status === 'incomplete') {
+                const flagged = result.items.filter(i => i.value === 'fail' || i.value === 'unassessed');
+                if (flagged.length) {
+                    html += `<ul class="gate-summary-flagged">`;
+                    flagged.forEach(item => {
+                        html += `<li><strong>${item.name}</strong> (${item.value})${item.note ? `: ${item.note}` : ''}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+            }
+            html += `</div>`;
+        });
+
+        container.innerHTML = html;
+        container.style.display = Object.keys(gateResults).length ? 'block' : 'none';
+    }
+
     function attachDownloadHandler() {
         const btn = document.getElementById('downloadReport');
         if (!btn) return;
@@ -383,6 +509,39 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (lastToolName) {
                     doc.text(`Tool: ${lastToolName}`, 10, y);
                     y += 10;
+                }
+
+                // Safety Gates
+                const gateStatusText = {
+                    pass: 'PASS',
+                    partial: 'PARTIAL — REVIEW NEEDED',
+                    incomplete: 'INCOMPLETE',
+                    fail: 'FAIL — DO NOT PROCEED WITHOUT REVIEW'
+                };
+                if (Object.keys(gateResults).length) {
+                    doc.setFontSize(14);
+                    doc.text("Safety Gates", 10, y);
+                    y += 8;
+                    doc.setFontSize(12);
+                    doc.setFont(undefined, 'bold');
+                    doc.text(`Overall: ${gateStatusText[overallGateStatus]}`, 10, y);
+                    doc.setFont(undefined, 'normal');
+                    y += 8;
+
+                    Object.entries(gateResults).forEach(([section, result]) => {
+                        doc.text(`${section}: ${gateStatusText[result.status]} (Pass ${result.counts.pass} / Partial ${result.counts.partial} / Fail ${result.counts.fail} / Not assessed ${result.counts.unassessed})`, 10, y);
+                        y += 8;
+
+                        if (result.status === 'fail' || result.status === 'incomplete') {
+                            const flagged = result.items.filter(i => i.value === 'fail' || i.value === 'unassessed');
+                            flagged.forEach(item => {
+                                const noteText = item.note ? `: ${item.note}` : '';
+                                doc.text(`   - ${item.name} (${item.value})${noteText}`, 10, y);
+                                y += 7;
+                            });
+                        }
+                    });
+                    y += 4;
                 }
 
                 // Section averages (Dimensions)
@@ -416,7 +575,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Get section headings for radar chart labels
     const radarLabels = formConfig.fields
-        .filter(field => field.section && field.questions)
+        .filter(field => field.section && field.questions && field.sectionType !== 'gate')
         .map(field => field.section.split(' - ')); // <-- wrap here too!
 
     // Set blank data (all zeros)
@@ -468,9 +627,11 @@ function convertToCSV(obj) {
 async function getDropboxToken() {
     const host = window.location.hostname;
     const isLocal = host === 'localhost' || host === '127.0.0.1';
-    if (isLocal) {
-        // local dev token (keeps current behaviour)
-        return 'sl.u.AGFtivBtEJH6o2hN99iDIWEc300rmgVhshng8op9-JV0BJ6KFE_9HsjTWLTYb7LI5V6x9j7UvtWrxMs_YlfcECD2exZeYJSSlOQA4DuK39lm04B-UqlEibQsAQV0VUQwRc0l5lBpqX3v6P9KhTH3EtS-4FVgjRrcXpFLqi0KVNxMI-qPwMvFuH73PPSnuiSiMrmDHbISSdW9Be4RkYz41H3JLhbzOpYyrr7aW3ZAqObu51I4Ri0AegNoeEogqsTtFyBBUZCxJAaGTpUTsem5VFws6V7NA5GM-GS9Vv0sgifo5e6vKapafiNf2RgFV7ULwOAQmRZm4YEXAVKCFP1ySrhuARZZl_Hs9FJWSX1yRZPqaTzF9DvWaxNFuls5OuvADypN2_vRgmgXvDVSs_1NgRzdBTW94hUtHFKMbccoV9vZF8hWvyRK7S6u7-xN5m2RnZoMfBhX1YQ-WLwjTpIiuaiWQ37k7Ff6jDlZXZJhHUBRGHBZBlWGi2XxBA3cfOWQul1eXd0-sKJUdEa2eC8m-T2bkgF46eNdXZxTcHOfHGXGMsxNVTmvPYT4WM0D4CbZfwNDwtTl9ZojVy9L5ZhpTE7-DVclfk9HfhL_IGWVol7_LGgwwjdspwjd2TDvX0nqk1r1pBhkCiI_wlc14XgHOhQ2UZRLGs5v6jY_TOu8KEq9ZNvZ3wO1oGHDqXnXDZhZ3kuLykPjOdSAPeEcMA2cCbirrY6PvOu0N4AnjVLl7F_VR54mklNZPZi1eAjEORF1ob3Jrmx7Up4BiKA6ol3OG_tcMOGumFMe7lDn2JqsUkhVT-Hjm4Fmu8YSSUjeHNoicR_XIxdijCKMG3srbHZiK4Yq4mNSKfgRIrbHMYK2o3DsFiq2eMz6heDyQHlucJDz48Mc9VIHXMjgqav06A4qlEKhgh2-_w9Pd0JU_C5dY3swAlCgpLUUqsceVxiAZN8KN2HYeTia-ronEL11-r8qkchs_cZURJjCNO3tYCwEI1u89G7hVSRzvZe0LZlyKGjOjV5B0GaPnNi5ul2BYEImfBq6h1RjObw0cT1Wajs6iYyyOpff03ldJ1whEqCAYxD2DWF08idwTTQCYh5UcW2Hi6G7zanXr3FkLZs5V26hj4X2n4_x61AiiDIMuo_GUx9pGs09lyaSKhLIVEwK07yIKHM2A_wa8ElKCOZ6HhE-KKFe0E2iGUTl90RWeOP71futz8xTOqm-4rvBCYIb9ox2OFMbS63shg1Q4w5VGrAaSyophKkVfJ30HRWqDlkKkoOtDDe4BfSo3NEkjV-j96mUjWGp';
+    if (isLocal && window.LOCAL_DROPBOX_TOKEN) {
+        // Local dev only: define window.LOCAL_DROPBOX_TOKEN in a gitignored
+        // env.local.js (see env.local.js.example) if you need to test the
+        // Dropbox upload without running `netlify dev`.
+        return window.LOCAL_DROPBOX_TOKEN;
     }
 
     try {
